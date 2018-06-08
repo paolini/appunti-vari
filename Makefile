@@ -1,10 +1,7 @@
-DEPENDS=*.tex_
-
-%.pdf: %.tex $(DEPENDS)
+%.pdf: %.tex
 	rubber -f --pdf -s $<
-	#rubber-info --check $<
 
-all: formula_area.pdf curve.pdf forme_differenziali.pdf sistemi_lineari.pdf derivata.pdf tychonov.pdf inversione.pdf studioqualitativo.pdf senodienne.pdf uniformecontinuita.pdf ricorrenza.pdf
+all: formula_area.pdf curve.pdf forme_differenziali.pdf sistemi_lineari.pdf derivata.pdf tychonov.pdf inversione.pdf studioqualitativo.pdf senodienne.pdf uniformecontinuita.pdf ricorrenza.pdf ricorrenza.pdf
 
 clean:
 	rm -fr *.aux *.log *.out *.toc
