@@ -815,6 +815,13 @@ Tale funzione $g$ si indica anche con il simbolo $f^{-1}$ ed ha le proprietà
 La funzione inversa di $f$ è quindi anch'essa invertibile e l'inversa dell'inversa
 è $f$ stessa: $(f^{-1})^{-1} = g^{-1} = f$.
 
+L'insieme di tutte le funzioni $f\colon A \to B$ viene denotato con $B^A$.
+L'insieme di tutte le funzioni $f\colon A \to A$ potrà essere
+denotato con $A!$ o (più comunemente) con $S(A)$
+(si veda l'esercizio~\ref{ex:9478} per avere una motivazione di tali notazioni).
+
+
+
 Se $f\colon X\to Y$ è una funzione e se $A\subset X$ si definisce
 l'insieme $f(A)$, chiamato \myemph{immagine} di $A$ tramite $f$ come:
 \[
@@ -1081,7 +1088,7 @@ non è $\#X \le \#P(X)$.
   per ogni $A\subset \NN$ se
   \begin{enumerate}
      \item $0\in A$;
-     \item $\forall n\in \NN \colon \enclose{n\in A \implies \sigma(n) \in A}$;
+     \item $\forall n\in \NN \colon n\in A \implies \sigma(n) \in A$;
   \end{enumerate}
   allora $A= \NN$.
   \end{enumerate}
@@ -1096,51 +1103,13 @@ durante un conteggio non si torna mai ad un numero già utilizzato.
 Lo zero è inoltre particolare perché esso non è il successore di nessun altro
 numero naturale (questo viene espresso dal secondo assioma).
 L'ultimo assioma serve a garantire che partendo da zero e cominciando
-a considerare il successore di 0 (che si chiama $1=\sigma(0)$) e poi il
+a considerare il suo successore (che si chiama $1=\sigma(0)$) e poi il
 successore del successore (chiamato $2=\sigma(1)$) e così via, si ottengono
 tutti i numeri naturali. Vedremo, ad esempio, che l'insieme $\QQ^+$
 dei numeri razionali non negativi
 soddisfa i primi due assiomi di Peano se si pone $\sigma(q)=q+1$
 ma non soddisfa il terzo assioma in quanto la frazione $1/2$ non viene mai raggiunta
 partendo da $0$ e sommando $1$.
-
-L'insieme dei numeri naturali è, per certi versi, paradossale, come si può
-capire dalla seguente storiella.
-
-\begin{exercise}[Hotel Hilbert]\index{Hotel Hilbert}
-  Nell'hotel Hilbert, come in tutti gli hotel, ogni stanza ha associato univocamente
-  un numero naturale: il numero della stanza.
-  Però a differenza degli altri hotel nell'hotel Hilbert c'è una stanza per
-  ogni numero naturale, quindi le stanze e i numeri naturali sono in corrispondenza
-  biunivoca (diremo quindi che ci sono \emph{infinite} stanze).
-
-  Un bel giorno arriva un cliente all'hotel e chiede all'addetto
-  alla \emph{reception} di avere una stanza. Purtroppo l'hotel è pieno e
-  quindi l'addetto informa il cliente che non è possibile avere una stanza.
-  Il cliente insiste e fa chiamare il direttore che risolve la questione in
-  maniera assolutamente brillante.
-  Il direttore chiede gentilmente ad ogni ospite dell'hotel di spostarsi dalla sua
-  stanza a quella seguente. Cioè: l'ospite nella stanza $n$ si deve spostare nella
-  stanza $n+1$. In tal modo si libera la stanza numero $0$ che quindi può essere
-  utilizzata dal nuovo arrivato.
-
-  Il giorno seguente arriva all'albergo una corriera che porta infinite persone,
-  una per ogni numero naturale, come per l'albergo. Ma l'albergo è già pieno.
-  Come farà il direttore a fare spazio per tutte queste persone?
-\end{exercise}
-
-In realtà non c'è niente di paradossale nella storiella precedente, se non il
-fatto che vogliamo ragionare con insiemi infiniti.
-L'esistenza della funzione $\sigma$ può anzi essere presa come definizione
-di insieme infinito.
-
-\begin{definition}
-  Diremo che un insieme $A$ è \myemph{finito}
-  se ogni funzione iniettiva $f\colon A \to A$ è anche suriettiva.
-  Diremo che un insieme $A$ è \myemph{infinito}
-  se non è finito ovvero se esiste una funzione $f\colon A \to A$
-  iniettiva ma non suriettiva.
-\end{definition}
 
 La proprietà induttiva dei numeri naturali permette di definire le funzioni su
 $\NN$ utilizzando le \emph{definizioni per induzione}, come nel seguente.
@@ -1158,57 +1127,70 @@ Allora esiste un unica funzione $f\colon \NN \to A$ tale che
 essere soddisfatte contemporaneamente).
 \end{theorem}
 %
+Intuitivamente dopo aver definito $f(0) = \alpha$ si potrà definire
+$f(1) = g(0, \alpha)$, $f(2) = g(1, f(1))$, $f(3) = g(2, f(2))$ etc.
+Per la proprietà induttiva dei numeri naturali la funzione $f$ risulterà
+definita univocamente su tutti i numeri naturali.
+Riportiamo di seguito una dimostrazione più formale, che ci permette di
+osservare come viene utilizzata in pratica la definizione di funzione.
+%
 \begin{proof}
+L'idea della dimostrazione è di definire $f$ come la ``più piccola'' relazione
+che soddisfa le condizioni~\eqref{eq:485452}. Si prenderà poi l'insieme su cui $f$
+è definita univocamente e si dimostrerà che è tutto $\NN$ concludendo quindi
+che è una funzione $f\colon \NN \to A$.
+
 Consideriamo l'insieme di tutte le relazioni tra $N$ e $A$
 che soddisfano~\eqref{eq:485452}:
 \begin{align*}
 \mathcal F = \{ R\subset \NN \times A \colon &(0,\alpha)\in R,\\
-  &(n,x)\in R \implies (\sigma(n),g(n,x))\in R \}
+  &(n,a)\in R \implies (\sigma(n),g(n,a))\in R \}
 \end{align*}
 e definiamo
 \[
   f = \bigcap \mathcal F.
 \]
-Chiaramente $f\subset \NN\times A$ è una relazione,
-vogliamo dimostrare che $f$ è definita univocamente su tutto $\NN$
-ed è quindi una funzione $f\colon N \to A$ con le proprietà richieste.
+Chiaramente $f\subset \NN\times A$ è una relazione.
+E' anche facile verificare che $f\in \mathcal F$ (si ragioni sulla
+definizione di intersezione).
 Posto
 \[
-  D = \{ n\in \NN\colon \exists! x\in A\colon (n,x)\in f \}
+  D = \{ n\in \NN\colon \exists! a\in A\colon (n,a)\in f \}
 \]
-vogliamo dimostrare che $D=\NN$ perché in tal caso abbiamo dimostrato che $f$ è
-definita univocamente su tutto $\NN$ e quindi è una funzione.
-Lo possiamo dimostrare per induzione.
-Vogliamo poi dimostrare che $D=\NN$ utilizzando l'assioma di induzione.
-Innanzitutto osserviamo che $f\in \mathcal F$ (questo è immediato,
-se ci si riflette un attimo).
-Dunque deve essere $(0,\alpha)\in f$.
-Se esistesse $x\neq \alpha$ tale che $(0,x)\in f$ allora potrei considerare la
-relazione $R= f \setminus \{(0,x)\}$ e osservare che $R\in \mathcal F$
-(visto che $x\neq 0$ questo non inficia la condizione $(0,\alpha)\in R$ e
+vogliamo dimostrare che $D=\NN$.
+Lo possiamo fare utilizzando l'assioma di induzione.
+Visto che $f\in \mathcal F$ sappiamo che $(0,\alpha)\in f$.
+Se esistesse $a\neq \alpha$ tale che $(0,a)\in f$ allora potrei considerare la
+relazione $R = f \setminus \{(0,a)\}$ e osservare che $R\in \mathcal F$
+(visto che $a\neq \alpha$ questo non inficia la condizione $(0,\alpha)\in R$ e
 visto che $\sigma(n)\neq 0$ non viene inficiata neanche la condizione
-$(n,x)\in R \implies (\sigma(n),g(n,x))\in R$. Visto che $R\in \mathcal F$
+$(n,a)\in R \implies (\sigma(n),g(n,a))\in R$.
+Siccome $R\in \mathcal F$
 e $R\subset f$ otteniamo una contraddizione in quanto essendo $f=\bigcap \mathcal F$
 si dovrebbe avere $f\subset R$ e quindi $f=R$, cosa che non è.
 Abbiamo quindi mostrato che $0\in D$ che è la prima condizione nell'assioma di induzione.
 
 Supponiamo ora di sapere che $n\in D$: dobbiamo allora dimostrare che anche
-$\sigma(n)\in D$. Ma se $n\in D$ significa che esiste un unico $x$ tale che
-$(n,x)\in f$. Essendo $f\in \mathcal F$ questo implica che $(\sigma(n),g(n,x))\in R$
-e quindi esiste $y=g(n,x)$ tale che $(\sigma(n),y)\in R$. Dobbiamo mostrare
-che tale $y$ è unico. Se ci fosse $z\neq y$ tale che $(\sigma(n),z)\in R$ potrei
+$\sigma(n)\in D$. Ma se $n\in D$ significa che esiste un unico $a\in A$ tale che
+$(n,a)\in f$. Essendo $f\in \mathcal F$ questo implica che $(\sigma(n),g(n,a))\in R$
+e quindi esiste $b=g(n,a)$ tale che $(\sigma(n),b)\in R$. Dobbiamo mostrare
+che tale $y$ è unico. Se ci fosse $c\neq b$ tale che $(\sigma(n),c)\in f$ potrei
 definire (analogamente a come abbiamo fatto nel passo precedente)
-$R=f\setminus\{(\sigma(n),z)\}$. Anche in questo caso possiamo dimostrare
-che $R\in \mathcal F$. Infatti $(0,\alpha)\in R$ in quanto certamente $\sigma(n)\neq 0$
-ed essendo $(0,\alpha)\in f$ deduciamo che $(0,\alpha)\in R$.
+$R=f\setminus\{(\sigma(n),c)\}$. Anche in questo caso possiamo dimostrare
+che $R\in \mathcal F$.
+Certamente $(0,\alpha)\in f$ ed essendo $\sigma(n)\neq 0$ possiamo
+affermare che $(0,\alpha)\in R$.
+Inoltre se $(k,d)\in R$ allora certamente $(k,d)\in f$ (in quanto $R\subset f$)
+e quindi $(\sigma(k),g(k,d))\in f$ dunque basta escludere che sia
+$(\sigma(k),g(k,d)) = (\sigma(n),c)$.
+Questo succede in quanto se fosse $\sigma(k)=\sigma(n)$ avremmo $k=n$
+e quindi $d=a$ in quanto $n\in D$. Ma allora si avrebbe $g(k,d)=g(n,a)=b\neq c$.
 
-**** TO BE COMPLETED ****
+L'assioma di induzione può dunque essere applicato e ci permette di concludere
+che $D=\NN$. Significa che $f$ è univocamente definita su tutto $\NN$ e quindi
+è una funzione $f\colon \NN \to A$ che soddisfa~\eqref{eq:485452} in
+quanto $f\in \mathcal F$.
 \end{proof}
-
-Intuitivamente dopo aver definito $f(0) = \alpha$ si potrà definire
-$f(1) = g(0, \alpha)$, $f(2) = g(1, f(1))$, $f(3) = g(2, f(2))$ etc.
-Per la proprietà induttiva dei numeri naturali la funzione $f$ risulterà
-definita univocamente su tutti i numeri naturali.
 
 Con questo tipo di definizioni è possibile definire per induzione
 l'operazione $+$ (addizione)
@@ -1216,11 +1198,13 @@ facendo in modo che valga la seguente proprietà:
 \[
 \begin{cases}
   n + 0 = n\\
-  n + \sigma(m) = \sigma(n+m)
+  n + \sigma(m) = \sigma(n+m).
 \end{cases}
 \]
-(in particolare si ottiene $\sigma(n)=n+1$)
-e sarà possibile definire la moltiplicazione $\cdot$ in modo che
+In particolare si ottiene $\sigma(n) = n+1$ e quindi d'ora in avanti
+non useremo più la funzione $\sigma$ ma useremo sempre l'addizione.
+Analogamente sarà
+ possibile definire la moltiplicazione $\cdot$ in modo che
 valga
 \[
 \begin{cases}
@@ -1237,8 +1221,8 @@ note proprietà:
 \item $n\cdot (a+b) = n\cdot a + n\cdot b$ (proprietà associativa).
 \end{enumerate}
 
-Diremo che un numero $n\in \NN$ è divisibile per $m\in \NN$ se esiste $k\in \NN$
-tale che $n = k \cdot m$. In tal caso scriveremo $k = n/m$.
+% Diremo che un numero $n\in \NN$ è divisibile per $m\in \NN$ se esiste $k\in \NN$
+% tale che $n = k \cdot m$. In tal caso scriveremo $k = n/m$.
 
 Si potrà anche definire una relazione d'ordine $\le$ tramite la condizione
 \[
@@ -1248,9 +1232,6 @@ La relazione $\ge$ si definisce come la relazione inversa di $\le$.
 La relazione $<$ si
 definisce richiedendo che sia $x\le y \land x\neq y$ e la relazione $>$
 è definita come l'inversa di $<$.
-Osserviamo che per come abbiamo costruito i numeri naturali (ci potrebbero essere
-altre costruzioni che portano agli assiomi di Peano) si ha $n\le m \iff n \subset m$
-e $n < m \iff n\in m$.
 
 Come esempio di applicazione della definizione per induzione definiamo
 il \emph{fattoriale} $n! = 1 \cdot 2 \dots n$ (il prodotto dei numeri naturali
@@ -1273,7 +1254,7 @@ $0!=1$, si ottiene una caratterizzazione univoca:
  \end{cases}
 \]
 Si tratta di applicare il Teorema~\ref{th:def_induction}
-con $X=\NN$, $\alpha = 1$, $g(n, x) = (n+1)\cdot x$ per garantire che esiste
+con $A=\NN$, $\alpha = 1$, $g(n, a) = (n+1)\cdot a$ per garantire che esiste
 una unica funzione $\NN\to\NN$, $n\mapsto n!$, che soddisfa queste proprietà.
 
 In maniera simile si potrà definire per ogni $n,m \in \NN$ l'elevamento a potenza $n^m$
@@ -1284,8 +1265,8 @@ Alcuni testi lasciano indefinita questa operazione ma in realtà la formula
 come $0!$, deve valere $1$.
 Questo viene confermato dal fatto che $n^m$ è il numero di funzioni da un
 insieme con $m$ elementi in un insieme con $n$ elementi e
-su un dominio vuoto è definita una unica funzione (la funzione vuota), anche
-se il codominio è vuoto.
+su un dominio vuoto è definita una unica funzione (la funzione vuota)
+qualunque sia il codomonio.
 }
 \[
 \begin{cases}
@@ -1367,25 +1348,218 @@ Chiaramente $0\in B$ in quanto $0\le \NN$. Se poi sapessimo che $n\in B$
 allora $n\le A$. Non può essere $n\in A$ altrimenti $n$ sarebbe il minimo di $A$. Dunque $n < A$ e quindi $n+1 \le A$. Abbiamo quindi mostrato che se $n\in B$ anche $n+1\in B$. Per il principio di induzione deduciamo che $B=\NN$ e quindi $A$ sarebbe vuoto, cosa che abbiamo escluso per ipotesi.
 \end{proof}
 
+\begin{definition}
+Dato $n\in \NN$ definiamo $I_n = \{k\in \NN\colon k < n\}$
+(ad esempio $I_3=\{0,1,2\}$ è un insieme formato da $3$ elementi).
+Se $A$ è un insieme diremo che $\# A= n$ se $\# A = \# I_n$.
+Diremo in tal caso che $A$ ha $n$ elementi.
+\end{definition}
 
-\begin{exercise}
+Se vogliamo che la definizione precedente abbia senso,
+dobbiamo assicurarci che $\# I_m = \# I_n$ se e solo se $m=n$.
+Questo fatto apparentemente ovvio richiede una dimostrazione
+un poco articolata. Cominciamo con il seguente.
+
+\begin{lemma}
+  Se $\# I_m \le \# I_n$ allora $m\le n$.
+\end{lemma}
+%
+\begin{proof}
+  Dimostreremo per induzione su $n$ la seguente proprietà:
+  \[
+    P(n)\colon \forall m\in \NN\colon \enclose{\#I_m\le \#I_n}\implies m\le n.
+  \]
+
+Verifichiamo se $P(0)$ è vera. Se $\#I_m\le \#I_0$ significa che esiste una
+funzione iniettiva $f\colon I_m \to I_0 = \emptyset$. Ma non esistono funzioni
+a valori nell'insieme vuoto, a meno che anche il dominio non sia vuoto. Dunque
+$I_m=\emptyset$ e $m=0$ da cui segue ovviamente $m\le n$. Dunque $P(0)$ è vera.
+
+Supponiamo per ipotesi induttiva che $P(n)$ sia vera e consideriamo $P(n+1)$.
+Sia dunque $f\colon I_m \to I_{n+1}$ una funzione iniettiva.
+
+Come primo passo vogliamo dimostrare che esiste una funzione iniettiva
+$g\colon I_m \to I_{n+1}$ tale che $g(m-1)=n$.
+Per fare ciò consideriamo due casi a seconda che $n\in f(I_m)$
+oppure $n\not \in f(I_m)$.
+Il secondo caso è più facile perché se $n\not \in f(I_m)$ basterà definire
+\[
+  g(k) =
+  \begin{cases}
+    f(k) & \text{se $k<m-1$}\\
+    n & \text{se $k=m-1$}.
+  \end{cases}
+\]
+La funzione $g$ così definita è certamente iniettiva in quanto $f$ lo è e il
+valore $n$ non era già stato utilizzato da $f$.
+Nel primo caso si avrà invece $f(j)=n$ per qualche $j<m$.
+Se $j=m-1$ abbiamo finito perché $f(m-1)=n$ e basterà quindi scegliere $g=f$.
+Se invece $j\neq m-1$ basterà scambiare i valori di $f$ nei punti $j$ e $m-1$:
+\[
+g(k) =
+\begin{cases}
+  f(k) & \text{se $k\neq j$ e $k\neq m-1$};\\
+  f(m-1) & \text{se $k=j$};\\
+  n & \text{se $k=m-1$}.
+\end{cases}
+\]
+E' chiaro che $g$ rimane iniettiva se $f$ lo era.
+
+Abbiamo quindi una funzione $g\colon I_m \to I_{n+1}$ iniettiva e tale
+che $g(m-1)=n$. Significa che la restrizione $h = g_{|I_{m-1}}$ è una funzione
+$h\colon I_{m-1}\to I_n$ in quanto il valore $n$ non viene mai assunto da $h$.
+Ma allora ad $h$ si applica l'ipotesi induttiva e possiamo quindi affermare che
+$m-1\le n$ da cui si ottiene immediatamente $m\le n+1$ come volevamo dimostrare.
+\end{proof}
+
+Dal Lemma segue che se $\# I_m = \# I_n$ allora $m\le n$ e $n\le m$ e quindi $m=n$.
+Viceversa è chiaro che se $m=n$ allora $\# I_n = \#I_m$ in quanto in tal caso
+$I_m = I_n$.
+
+\begin{exercise}\label{ex:9478}
 Utilizzando il principio di induzione dimostrare che se $\# A = n$ allora:
 \begin{enumerate}
     \item $\# \P(A) = 2^n$;
-    \item $\# \{f\colon A \to A\colon \text{$f$ biettiva}\} = n!$
+    \item $\# (A!) = \# \{f\colon A \to A\colon \text{$f$ biettiva}\} = n!$
       (le funzioni biettive di un insieme in sé si chiamano anche
-      \emph{permutazioni}).
+      \emph{permutazioni});
+    \item se $\# B = m$ allora $\# B^A = \#\{f\colon A \to B\} = m^n$.
 \end{enumerate}
 \end{exercise}
 
-
-
 \section{insiemi finiti/infiniti}
 
-Diremo che un insieme $A$ ha $n$ elementi e scriveremo $\# A = n$,
-se $A$ può essere messo in corrispondenza
-biunivoca con l'insieme $n= \{0, \dots, n-1\}$ cioè se $\# A = \# n$.
-Gli insiemi che possono essere messi in corrispondenza biunivoca con
+L'insieme dei numeri naturali è, per certi versi, paradossale, come si può
+capire dalla seguente storiella.
+
+\begin{exercise}[Hotel Hilbert]\index{Hotel Hilbert}
+  Nell'hotel Hilbert, come in tutti gli hotel, ogni stanza ha associato univocamente
+  un numero naturale: il numero della stanza.
+  Però a differenza degli altri hotel nell'hotel Hilbert c'è una stanza per
+  ogni numero naturale, quindi le stanze e i numeri naturali sono in corrispondenza
+  biunivoca (diremo quindi che ci sono \emph{infinite} stanze).
+
+  Un bel giorno arriva un cliente all'hotel e chiede all'addetto
+  alla \emph{reception} di avere una stanza. Purtroppo l'hotel è pieno e
+  quindi l'addetto informa il cliente che non è possibile avere una stanza.
+  Il cliente insiste e fa chiamare il direttore che risolve la questione in
+  maniera assolutamente brillante.
+  Il direttore chiede gentilmente ad ogni ospite dell'hotel di spostarsi dalla sua
+  stanza a quella seguente. Cioè: l'ospite nella stanza $n$ si deve spostare nella
+  stanza $n+1$. In tal modo si libera la stanza numero $0$ che quindi può essere
+  utilizzata dal nuovo arrivato.
+
+  Il giorno seguente arriva all'albergo una corriera che porta infinite persone,
+  una per ogni numero naturale, come per l'albergo. Ma l'albergo è già pieno.
+  Come farà il direttore a fare spazio per tutte queste persone?
+\end{exercise}
+
+In realtà non c'è niente di paradossale nella storiella precedente, se non il
+fatto che vogliamo ragionare con insiemi infiniti.
+L'esistenza della funzione $\sigma$ può anzi essere presa come definizione
+di insieme infinito.
+
+\begin{definition}
+  Diremo che un insieme $A$ è \myemph{finito}
+  se ogni funzione iniettiva $\sigma\colon A \to A$ è anche suriettiva.
+  Diremo che un insieme $A$ è \myemph{infinito}
+  se non è finito ovvero se esiste una funzione $\sigma\colon A \to A$
+  iniettiva ma non suriettiva.
+\end{definition}
+
+Chiaramente $\NN$ (se esiste) è un esempio di insieme infinito in quanto
+la funzione successore $\sigma(n) = n+1$ è iniettiva ma non suriettiva
+su $\NN$.
+Il seguente teorema ci dice che gli insiemi finiti sono quelli
+che hanno $n$ elementi con $n\in \NN$, e che gli insiemi infiniti
+sono quelli che hanno almeno tanti elementi quanti ne ha $\NN$.
+
+\begin{theorem}
+Un insieme $A$ è finito se e solo se esiste $n\in \NN$ tale che $\# A = n$.
+Un insieme $A$ è infinito se e solo se $\#A \ge \#\NN$.
+\end{theorem}
+%
+\begin{proof}
+  Innanzitutto è chiaro che se $\# A = \# B$ allora $A$ è finito/infinito
+  se e solo se
+  $B$ è finito/infinito.
+  Infatti se c'è una corrispondenza biunivoca $\phi\colon A\to B$
+  allora ogni funzione $f\colon B \to B$ corrisponde ad una funzione
+  $g\colon A \to A$ ponendo $g=f\circ \phi$ e l'iniettività/suriettività di $f$
+  è equivalente alla iniettività/suriettività di $g$.
+
+  Dimostriamo allora che $I_n$ è finito per ogni $n\in \NN$. Se esistesse una
+  funzione iniettiva ma non suriettiva $f\colon I_n \to I_n$.
+  Se fosse $n\not \in f(I_n)$ si avrebbe $f\colon I_n \to I_{n-1}$ iniettiva,
+  da cui $n\le n-1$ assurdo. Ma se anche fosse $n=f(k)$ per qualche $k\in I_n$
+  potrei definire $g\colon I_n\to I_{n-1}$ come segue. Scelto $x\in I_n\setminus f(I_n)$
+  ($x$ esiste in quanto $f$ non è suriettiva) poniamo
+  \[
+    g(j) =
+    \begin{cases}
+      f(j) & \text{se $j\neq k$},\\
+      x & \text{se $j=k$.}
+    \end{cases}
+  \]
+  Chiaramente $g$ sarebbe iniettiva e di nuovo otterremmo un assurdo.
+
+  Dunque $I_n$ è finito. Ma se $\# A = \# I_n$ allora anche $A$ è finito.
+
+  Dimostriamo ora che $\#\NN > \# I_n$ per ogni $n\in \NN$.
+  Chiaramente $\#\NN\ge \#I_n$ in quanto $\NN\supset I_n$.
+  Se per assurdo esistesse $f\colon \NN \to I_n$ iniettiva
+  potrei restringere $f$ a $I_{n+1}$
+  e avrei una funzione iniettiva $f_{|I_{n+1}}\colon I_{n+1}\to I_n$ da cui
+  otterrei l'assurdo $n+1 \le n$.
+
+  Mostriamo ora che se $A$ è infinito allora $\#A \ge \# \NN$.
+  Supponiamo dunque che esista $\sigma\colon A \to A$ iniettiva ma non suriettiva.
+  Scegliamo $\alpha \in A \setminus \sigma(A)$ e definiamo per induzione $f\colon N \to A$
+  con le condizioni:
+  \[
+    \begin{cases}
+        f(0) = \alpha \\
+        f(n+1) = \sigma(f(n)).
+    \end{cases}
+  \]
+  Dimostriamo che $f$ è iniettiva.
+  Sia $X=\{n\in \NN \colon \exists m\in \NN\colon m\neq n, f(m)=f(n)\}$
+  l'insieme dei punti in cui $f$ non è iniettiva.
+  Se $f$ non fosse iniettiva tale $X$ sarebbe non vuoto
+  e avrebbe quindi un minimo che chiamiamo $m \in X$.
+  Per tale $m$ esisterebbe un $n\neq m$ tale che $f(m)=f(n)$. Chiaramente $n\in X$
+  e quindi $n>m$ in quanto $m$ è il minimo.
+  Non può essere $m=0$ in quanto $f(0) = \alpha$ mentre $f(n)=\sigma(f(n-1)) \neq \alpha$
+  visto che $\alpha$ è un valore mai assunto da $\sigma$.
+  Ma se $m>0$ allora osserviamo che $\sigma(f(m-1)) = f(m) = f(n) = \sigma(f(n-1))$
+  e si avrebbe dunque $m-1\in X$. Questo è assurdo perché $m$ era il minimo di $X$.
+
+  Dimostriamo ora che se $A\subset \NN$ è un insieme tale che non esiste
+  $n\in \NN$ per cui $A\subset I_n$ (diremo che $A$ è superiormente illimitato)
+  allora $\#A = \#\NN$. Per fare questo definiamo ricorsivamente
+  una funzione iniettiva
+  $f\colon \NN \to A$ come segue:
+  \[
+    \begin{cases}
+       f(0) = \min A, \\
+       f(n+1) = \min (A\setminus I_{f(n)+1}).
+    \end{cases}
+  \]
+  La funzione $f$ è ben definita perché gli insiemi $A$ e $A\setminus I_{f(n)}$
+  sono non vuoti e dunque hanno minimo (per il buon ordinamento di $\NN$).
+  Chiaramente $f$ è iniettiva in quanto per definizione $f(n+1) > f(n)$.
+  Dunque abbiamo mostrato che $\#A \ge \NN$. Ma essendo $A\subset \NN$
+  possiamo quindi concludere che $\#A = \#\NN$.
+
+  Più in generale se $\# A \le \#\NN$ esiste un funzione iniettiva
+  $f\colon A \to \NN$ e quindi si ha $\# A = \# f(A)$ con $f(A)\subset \NN$.
+  Possiamo quindi concludere che se $\#A < \#\NN$ necessariamente deve esistere
+  $n\in \NN$ tale che $\#A = n$.
+
+  *** LA DIMOSTRAZIONE E' COMPLETA? ***
+
+\end{proof}
+
 un numero naturale si diranno \myemph{insiemi finiti}.
 Tutti gli altri insiemi si diranno \myemph{insiemi infiniti}.
 
