@@ -22,6 +22,8 @@
 \DeclareMathOperator{\diag}{diag}
 \newcommand{\myemph}[1]{\emph{#1}\marginpar{#1}}
 
+\newcommand{\enclose}[1]{\left({#1}\right)}
+
 \def\Xint#1{\mathchoice
 {\XXint\displaystyle\textstyle{#1}}%
 {\XXint\textstyle\scriptstyle{#1}}%
@@ -1067,99 +1069,141 @@ non è $\#X \le \#P(X)$.
 
 \section{I numeri naturali}
 
-Abbiamo in precedenza affermato che tutti gli oggetti matematici di cui abbiamo
-bisogno potranno essere rappresentati tramite gli insiemi.
-Abbiamo visto, ad esempio, come le relazioni e le funzioni possono essere definite
-utilizzando gli insiemi. Allo stesso modo possiamo procedere per definire i numeri
-naturali: anch'essi saranno particolari insiemi.
-
-Ci possono essere diversi modi per scegliere gli insiemi che definiscono i numeri
-naturali, ma la definizione normalmente utilizzata è la seguente.
-Si definisce il numero $0$ tramite l'insieme vuoto $\emptyset$ e si definisce
-il successivo di $n$ come l'insieme $n^+ = n \cup \{ n \}$. Si avrà quindi
-\begin{align*}
-  0 &= \emptyset = \{\}, \\
-  1 &= \emptyset^+ = 0 \cup \{0\} = \emptyset \cup \{0\} = \{0\}, \\
-  2 &= \emptyset^{++} = 1 \cup \{1\} = \{0, 1\}, \\
-  3 &= \emptyset^{+++} = 2 \cup \{2\} = \{0, 1, 2\},\\
-  \vdots \\
-  n &= \emptyset^{+\dots +} = \{ 0, 1, \dots, n-1\}, \\
-  \vdots
-\end{align*}
-In particolare l'insieme che rappresenta il numero $n$ è un insieme di $n$
-elementi (che sono i numeri più piccoli di $n$).
-
-Osserviamo però che se è vero che riusciamo a definire i singoli numeri naturali,
-nessuno degli assiomi che fin'ora abbiamo introdotto ci permette di definire
-l'insieme di tutti questi numeri naturali.
-In effetti, a bene riflettere, un \emph{universo} di insiemi formato solamente
-dagli insiemi finiti (concetto che ancora non abbiamo definito ma che usiamo ora
-in maniera intuitiva) soddisferebbe tutti gli assiomi fin'ora introdotti e non
-potrebbe contenere l'insieme dei numeri naturali, che intuitivamente deve essere
-infinito.
-Sarà quindi necessario introdurre un nuovo assioma per il quale
-introduciamo una apposita definizione.
-Diremo che un insieme $A$ è \emph{induttivo} se $\emptyset \in A$
-e $\forall n\in A\colon n^+\in A$.
-
-Assioma dell'infinito:
-\marginpar{assioma dell'infinito}
-esiste un insieme $\NN$ \marginpar{$\NN$}
-induttivo
-tale che\footnote{%
-In realtà sarebbe sufficiente garantire per assioma che esista un qualunque insieme induttivo
-senza ulteriori specificazioni. Infatti se esiste almeno un insieme induttivo
-$X$ chiameremo $\mathbb N$
-l'intersezione degli insiemi induttivi contenuti in $X$. Si potrebbe infatti
-verificare che l'intersezione di insiemi induttivi è induttivo ed essendo
-l'intersezione contenuta in ogni insieme induttivo non può contenere strettamente
-altri sottoinsiemi induttivi.
-}
-se $A\subset \NN$ è anch'esso induttivo allora $A=\NN$.
-Chiameremo l'insieme $\NN$
-\myemph{insieme dei numeri naturali}.
-
-Essendo $\NN$ un insieme induttivo esso contiene tutti i numeri naturali come
-li abbiamo definiti nel paragrafo precedente.
-Inoltre $\NN$ è il più piccolo insieme induttivo
-(non ci sono insiemi induttivi strettamente contenuti in $\NN$) e questo
-serve a garantire che $\NN$ non contenga altri elementi al di fuori dei numeri
-naturali.
-
-Su $\NN$ possiamo definire la funzione $\sigma \colon \NN \to \NN$
-tale che $\sigma(n) = n^+$. Formalmente si definisce $\sigma$ come relazione:
-\[
-  \sigma = \{(n,m) \in \NN \times \NN\colon m = n^+\}
-\]
-e si verifica facilmente che tale relazione è, effettivamente, una funzione.
-Si può allora verificare che $\NN$ soddisfa le seguenti proprietà:
 \begin{theorem}[assiomi di Peano]
-Esistono $0\in \NN$
-e $\sigma\colon \NN \to \NN$ tali che:
-\begin{enumerate}
-\item $\sigma$ è iniettiva;
-\item non esiste $n\in \NN$ tale che $\sigma(n)=0$;
-\item per ogni $A\subset \NN$ se
-\begin{enumerate}
-   \item $0\in A$;
-   \item $n\in A \implies \sigma(n) \in A$;
-\end{enumerate}
-allora $A= \NN$.
-\end{enumerate}
+  L'insieme $\NN$ dei numeri naturali è un insieme su cui
+  è data una funzione $\sigma\colon \NN\to\NN$ e un
+  elemento $0\in \NN$ (chiamato \myemph{zero}) che soddisfano le seguenti proprietà.
+  \begin{enumerate}
+  \item $\sigma$ è iniettiva;
+  \item non esiste $n\in \NN$ tale che $\sigma(n)=0$;
+  \item (assioma di induzione)
+  \index{assioma!di induzione}
+  per ogni $A\subset \NN$ se
+  \begin{enumerate}
+     \item $0\in A$;
+     \item $\forall n\in \NN \colon \enclose{n\in A \implies \sigma(n) \in A}$;
+  \end{enumerate}
+  allora $A= \NN$.
+  \end{enumerate}
 \end{theorem}
+
+I numeri naturali sono i numeri utilizzati per \emph{contare}.
+La funzione $\sigma\colon \NN \to \NN$ rappresenta il successore di un numero
+naturale, quindi quando avremo definito la somma vedremo che sarà
+$\sigma(n)=n+1$.
+Il fatto che $\sigma$ sia iniettiva serve a esprimere il fatto che
+durante un conteggio non si torna mai ad un numero già utilizzato.
+Lo zero è inoltre particolare perché esso non è il successore di nessun altro
+numero naturale (questo viene espresso dal secondo assioma).
+L'ultimo assioma serve a garantire che partendo da zero e cominciando
+a considerare il successore di 0 (che si chiama $1=\sigma(0)$) e poi il
+successore del successore (chiamato $2=\sigma(1)$) e così via, si ottengono
+tutti i numeri naturali. Vedremo, ad esempio, che l'insieme $\QQ^+$
+dei numeri razionali non negativi
+soddisfa i primi due assiomi di Peano se si pone $\sigma(q)=q+1$
+ma non soddisfa il terzo assioma in quanto la frazione $1/2$ non viene mai raggiunta
+partendo da $0$ e sommando $1$.
+
+L'insieme dei numeri naturali è, per certi versi, paradossale, come si può
+capire dalla seguente storiella.
+
+\begin{exercise}[Hotel Hilbert]\index{Hotel Hilbert}
+  Nell'hotel Hilbert, come in tutti gli hotel, ogni stanza ha associato univocamente
+  un numero naturale: il numero della stanza.
+  Però a differenza degli altri hotel nell'hotel Hilbert c'è una stanza per
+  ogni numero naturale, quindi le stanze e i numeri naturali sono in corrispondenza
+  biunivoca (diremo quindi che ci sono \emph{infinite} stanze).
+
+  Un bel giorno arriva un cliente all'hotel e chiede all'addetto
+  alla \emph{reception} di avere una stanza. Purtroppo l'hotel è pieno e
+  quindi l'addetto informa il cliente che non è possibile avere una stanza.
+  Il cliente insiste e fa chiamare il direttore che risolve la questione in
+  maniera assolutamente brillante.
+  Il direttore chiede gentilmente ad ogni ospite dell'hotel di spostarsi dalla sua
+  stanza a quella seguente. Cioè: l'ospite nella stanza $n$ si deve spostare nella
+  stanza $n+1$. In tal modo si libera la stanza numero $0$ che quindi può essere
+  utilizzata dal nuovo arrivato.
+
+  Il giorno seguente arriva all'albergo una corriera che porta infinite persone,
+  una per ogni numero naturale, come per l'albergo. Ma l'albergo è già pieno.
+  Come farà il direttore a fare spazio per tutte queste persone?
+\end{exercise}
+
+In realtà non c'è niente di paradossale nella storiella precedente, se non il
+fatto che vogliamo ragionare con insiemi infiniti.
+L'esistenza della funzione $\sigma$ può anzi essere presa come definizione
+di insieme infinito.
+
+\begin{definition}
+  Diremo che un insieme $A$ è \myemph{finito}
+  se ogni funzione iniettiva $f\colon A \to A$ è anche suriettiva.
+  Diremo che un insieme $A$ è \myemph{infinito}
+  se non è finito ovvero se esiste una funzione $f\colon A \to A$
+  iniettiva ma non suriettiva.
+\end{definition}
 
 La proprietà induttiva dei numeri naturali permette di definire le funzioni su
 $\NN$ utilizzando le \emph{definizioni per induzione}, come nel seguente.
-\begin{theorem}\label{th:def_induction}[definizione per induzione]
-Sia $X$ un insieme, $\alpha \in X$ e $g\colon \NN\times X \to X$.
-Allora esiste un unica funzione $f\colon \NN \to X$ tale che
-\[
+%
+\begin{theorem}[definizione per induzione]\label{th:def_induction}
+Sia $A$ un insieme, $\alpha \in A$ e $g\colon \NN\times A \to A$.
+Allora esiste un unica funzione $f\colon \NN \to A$ tale che
+\begin{equation}\label{eq:485452}
 \begin{cases}
   f(0) = \alpha,\\
   \forall n\in \NN\colon f(\sigma(n)) = g(n, f(n)).
 \end{cases}
-\]
+\end{equation}
+(La parentesi graffa serve ad indicare che entrambe le condizioni devono
+essere soddisfatte contemporaneamente).
 \end{theorem}
+%
+\begin{proof}
+Consideriamo l'insieme di tutte le relazioni tra $N$ e $A$
+che soddisfano~\eqref{eq:485452}:
+\begin{align*}
+\mathcal F = \{ R\subset \NN \times A \colon &(0,\alpha)\in R,\\
+  &(n,x)\in R \implies (\sigma(n),g(n,x))\in R \}
+\end{align*}
+e definiamo
+\[
+  f = \bigcap \mathcal F.
+\]
+Chiaramente $f\subset \NN\times A$ è una relazione,
+vogliamo dimostrare che $f$ è definita univocamente su tutto $\NN$
+ed è quindi una funzione $f\colon N \to A$ con le proprietà richieste.
+Posto
+\[
+  D = \{ n\in \NN\colon \exists! x\in A\colon (n,x)\in f \}
+\]
+vogliamo dimostrare che $D=\NN$ perché in tal caso abbiamo dimostrato che $f$ è
+definita univocamente su tutto $\NN$ e quindi è una funzione.
+Lo possiamo dimostrare per induzione.
+Vogliamo poi dimostrare che $D=\NN$ utilizzando l'assioma di induzione.
+Innanzitutto osserviamo che $f\in \mathcal F$ (questo è immediato,
+se ci si riflette un attimo).
+Dunque deve essere $(0,\alpha)\in f$.
+Se esistesse $x\neq \alpha$ tale che $(0,x)\in f$ allora potrei considerare la
+relazione $R= f \setminus \{(0,x)\}$ e osservare che $R\in \mathcal F$
+(visto che $x\neq 0$ questo non inficia la condizione $(0,\alpha)\in R$ e
+visto che $\sigma(n)\neq 0$ non viene inficiata neanche la condizione
+$(n,x)\in R \implies (\sigma(n),g(n,x))\in R$. Visto che $R\in \mathcal F$
+e $R\subset f$ otteniamo una contraddizione in quanto essendo $f=\bigcap \mathcal F$
+si dovrebbe avere $f\subset R$ e quindi $f=R$, cosa che non è.
+Abbiamo quindi mostrato che $0\in D$ che è la prima condizione nell'assioma di induzione.
+
+Supponiamo ora di sapere che $n\in D$: dobbiamo allora dimostrare che anche
+$\sigma(n)\in D$. Ma se $n\in D$ significa che esiste un unico $x$ tale che
+$(n,x)\in f$. Essendo $f\in \mathcal F$ questo implica che $(\sigma(n),g(n,x))\in R$
+e quindi esiste $y=g(n,x)$ tale che $(\sigma(n),y)\in R$. Dobbiamo mostrare
+che tale $y$ è unico. Se ci fosse $z\neq y$ tale che $(\sigma(n),z)\in R$ potrei
+definire (analogamente a come abbiamo fatto nel passo precedente)
+$R=f\setminus\{(\sigma(n),z)\}$. Anche in questo caso possiamo dimostrare
+che $R\in \mathcal F$. Infatti $(0,\alpha)\in R$ in quanto certamente $\sigma(n)\neq 0$
+ed essendo $(0,\alpha)\in f$ deduciamo che $(0,\alpha)\in R$.
+
+**** TO BE COMPLETED ****
+\end{proof}
 
 Intuitivamente dopo aver definito $f(0) = \alpha$ si potrà definire
 $f(1) = g(0, \alpha)$, $f(2) = g(1, f(1))$, $f(3) = g(2, f(2))$ etc.
