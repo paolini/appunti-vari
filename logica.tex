@@ -61,6 +61,8 @@ Puoi scaricare o contribuire a questi appunti su
 
 \maketitle
 
+\tableofcontents
+
 \section{Sistemi formali}
 Fin dai tempi di Aristotele si è cercato di individuare e descrivere
 le leggi che governano la \emph{deduzione}. Si è osservato che
@@ -1234,7 +1236,7 @@ Per il principio di induzione deduciamo che $B=\NN$ e quindi $A$ sarebbe vuoto,
 cosa che abbiamo escluso per ipotesi.
 \end{proof}
 
-\section{il teorema di incompletezza di G\"odel (cenni)}
+\section{Il teorema di incompletezza di G\"odel (cenni)}
 
 Il teorema di incompletezza di G\"odel afferma che ogni
 sistema formale sufficientemente potente (diciamo che sia in grado di
@@ -1261,7 +1263,7 @@ dimostrato e quindi tale sistema sarebbe \myemph{incoerente} (ci sono degli assi
 falsi oppure delle regole di inferenza che permettono di dedurre enunciati falsi
 a partire da enunciati veri).
 
-\section{cardinalità}
+\section{Cardinalità}
 
 La teoria degli insiemi è nata con l'intento di formalizzare l'utilizzo degli
 insiemi con infiniti elementi. Infatti finché gli insiemi hanno un numero finito
@@ -1315,6 +1317,24 @@ necessariamente sarà iniettiva.
 Questa dimostrazione intuitiva non può essere formalizzata con gli assiomi che
 abbiamo introdotto finora ma richiede un assioma aggiuntivo chiamato
 \myemph{assioma della scelta} (AC).
+
+Un'altra dimostrazione che richiede l'assioma della scelta (e che non faremo)
+garantisce che dati due insiemi $A$ e $B$ possiamo confrontarne la cardinalità:
+\[
+  (\#A \le \#B) \lor (\#B \le \#A).
+\]
+Significa cioè che se non esiste una funzione iniettiva da $A$ in $B$ allora
+deve esistere una funzione iniettiva da $B$ in $A$.
+
+\begin{axiom}[assioma della scelta]
+  Se $A$ è un insieme i cui elementi sono tutti insiemi non vuoti allora
+  esiste una funzione $f\colon A \to \bigcup A$ tale che
+  \[
+    f(X) \in X
+  \]
+  (cioè la funzione manda ogni insieme elemento di $A$ in un suo elemento).
+\end{axiom}
+
 Tale assioma serve a garantire che data una famiglia arbitraria di insiemi
 non vuoti esiste un insieme formato da un elemento per ognuno degli insiemi
 della famiglia. Per quanto possa sembrare strano tale assioma risulta
@@ -1560,7 +1580,7 @@ Significa che $\psi$ è l'inversa di $\phi$
 e che quindi $\phi$ è bigettiva.
 \end{proof}
 
-\section{insiemi finiti/infiniti}
+\section{Insiemi finiti/infiniti}
 
 L'insieme dei numeri naturali è, per certi versi, paradossale, come si può
 capire dalla seguente storiella.
@@ -1689,8 +1709,71 @@ risultano equivalenti
   $f$ è surgettiva allora è anche iniettiva e quindi anche bigettiva.
 \end{proof}
 
+\begin{theorem}
+  Se $A$ è finito e $B\subset A$ allora anche $B$ è finito.
+\end{theorem}
+%
+\begin{theorem}
+  Dimostriamo per induzione su $n$ che se $\#A = n$ allora ogni $B\subset A$
+  è finito.
+  Per $n=0$ si nota che $\#A = 0$ implica $A=\emptyset$ e quindi $B=\emptyset$
+  è certamente finito.
+  Supponiamo ora che sia $\#A = n+1$ e consideriamo $B\subset A$.
+  Se $B=A$ allora ovviamente $\#B=\#A=n+1$ e quindi $B$ è finito.
+  Altrimenti esiste $x\in A\setminus B$. E' facile verificare che
+  $\#(A\setminus\{x\}) = n$ ed essendo $B\subset A\setminus\{x\}$
+  applicando l'ipotesi induttiva si ottiene che $B$ è finito.
+\end{theorem}
 
-\section{i numeri interi}
+Viceversa si può dimostrare il seguente risultato.
+\begin{theorem}
+  Un insieme è finito oppure infinito.
+\end{theorem}
+%
+\begin{proof}
+Se $\# A \ge \#\NN$ allora esiste una funzione iniettiva $f\colon \NN \to A$
+e sappiamo esistere una funzione iniettiva ma non surittiva $\sigma\colon \NN \to \NN$.
+Posto $B=f(\NN)$ si ha dunque che $f\colon \NN\to B \subset A$ è bigettiva.
+Dunque possiamo definire $g \colon A \to A$ come
+\[
+g(a) =
+\begin{cases}
+    a & \text{se $a\not \in B$}\\
+    f(\sigma(f^{-1}(a))) & \text{se $a \in B$}.
+\end{cases}
+\]
+Non è difficile verificare che $g$ è iniettiva ma non suriettiva in quanto
+l'elemento $f(0)$
+non viene mai raggiunto da $g$. Dunque se $\# A \ge \#\NN$ certamente $A$
+è infinito.
+
+Ora mediante l'assioma della scelta si potrebbe dimostrare che se non è
+$\#A \ge \#\NN$ allora necessariamente si ha $\#A < \#\NN$
+(non lo dimostriamo perché richiederebbe diverse nuovi nozioni).
+Ma se $\#A < \#\NN$ allora esiste una funzione iniettiva $f\colon A \to \NN$.
+Poniamo $B=f(A)$ cosicché $f\colon A \to B$ è bigettiva. Per dimostrare
+che $A$ è finito basterà allora dimostrare che $B\subset \NN$ è finito.
+
+Se esiste $n\in \NN$ tale che $B\subset I_n$ allora si avrebbe $\#A\le \#I_n$
+e dunque $A$ sarebbe finito perché in corrispondenza biunivoca con un sottoinsieme
+di un insieme finito. Supponiamo allora che per ogni $n\in \NN$ si abbia
+$B\setminus I_n\neq \emptyset$. Costruiamo allora una funzione
+$f\colon \NN \to B$ tramite la seguente definizione ricorsiva:
+\[
+ \begin{cases}
+    f(0) = \min B \\
+    f(n+1) = \min (B\setminus I_{f(n)+1}).
+ \end{cases}
+\]
+La funzione è ben definita perché $B$ e $B\setminus I_m$ non sono mai vuoti
+e il buon ordinamento di $\NN$ garantisce l'esistenza del minimo.
+E' chiaro che $f(n+1) > f(n)$ e dunque (lo si potrebbe dimostrare per induzione)
+la funzione $f$ è iniettiva. Significa dunque che $\NN\le A$ contro l'ipotesi
+$\#A < \#\NN$.
+
+\end{proof}
+
+\section{I numeri interi}
 
 Dati due numeri naturali $n,m\in \NN$ vogliamo definire la loro
 \myemph{differenza} cioè al \emph{percorso} $m\mapsto n$ necessario per
