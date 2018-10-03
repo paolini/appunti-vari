@@ -1692,8 +1692,255 @@ risultano equivalenti
 
 \section{i numeri interi}
 
-Sui numeri naturali $\NN$ sono definite le operazioni di addizione e moltiplicazione.
-Risulta utile estendere $\NN$ in modo che ogni numero abbia anche un opposto, cioè in modo che per ogni $n$ esista $m$ tale che $n+m=0$.
+Dati due numeri naturali $n,m\in \NN$ vogliamo definire la loro
+\myemph{differenza} cioè al \emph{percorso} $m\mapsto n$ necessario per
+andare da $m$ a $n$. Se $n\ge m$ significa che $n$ si può ottenere da $m$ sommando
+un certo numero naturale $k$: $n=m+k$. Il numero $k$ viene chiamato
+\myemph{differenza} tra $n$ ed $m$. Se invece $n<m$ il percorso $m\mapsto n$
+è il percorso \emph{opposto} di $n\mapsto m$ e la differenza è, in un senso
+da precisare, l'opposto del numero $k$ tale che $m=n+k$.
+A posteriori vedremo che il percorso $m\mapsto n$ rappresenta il numero intero
+$n-m$.
+
+Diremo che due percorsi $m\mapsto n$ e $m'\mapsto n'$
+sono \emph{equivalenti} se la differenza è la stessa, ovvero se:
+\[
+  m + n' = m' + n.
+\]
+Se, ad esempio, $m'=m+k$ e $n'=n+k$ è chiaro che $m'\mapsto n'$ risulta
+equivalente a $m\mapsto n$.
+Ricordando che $m\mapsto n$ può essere rappresentato come una coppia
+$(m,n)\in \NN\times \NN$ definiamo quindi la seguente relazione
+$\sim$ su $\NN \times \NN$:
+\[
+  (m,n) \sim (m',n') \iff m + n' = m' + n.
+\]
+
+E' facile verificare che la relazione $\sim$ appena introdotta
+è una relazione di equivalenza in base alla seguente definizione.
+
+\begin{definition}[relazione di equivalenza]
+  Una relazione $\sim$ su un insieme $A$ si dice essere una
+  \myemph{relazione di equivalenza} se è una relazione
+  riflessiva (cioé $x\sim x$),
+  simmetrica (cioé $x\sim y \iff y\sim x$) e
+  transitiva
+  (cioé $(x \sim y) \land (y\sim z) \implies x \sim z$).
+\end{definition}
+
+Le relazioni di equivalenza permettono di definire un insieme
+chiamato \emph{quoziente}.
+
+\begin{definition}[insieme quoziente]
+  Sia $\sim$ una relazione di equivalenza su un insieme $A$.
+  Dato $a \in A$ definiamo la \myemph{classe di equivalenza di $a$}
+  come l'insieme di tutti gli elementi di $A$ che sono in relazione
+  con $a$:
+  \[
+   [a] = \{x \in A \colon x \sim a\}.
+  \]
+  L'insieme di tutte le classi di equivalenza viene chiamato
+  \myemph{insieme quoziente}:
+  \[
+  A/{\sim} = \{[x] \colon x \in A\}.
+  \]
+  Dunque se $\alpha \in A/{\sim}$ deve esistere $a\in A$ tale che
+  $\alpha = [a]$. In tal caso si dirà che $a$ è un
+  \myemph{rappresentante}
+  di $\alpha$.
+\end{definition}
+
+L'insieme quoziente serve a identificare come uguali
+tutti gli elementi che sono tra loro equivalenti:
+se $\sim$ è una relazione di
+equivalenza allora si ha
+\[
+  x\sim y \iff [x]=[y].
+\]
+
+Infatti se $x \sim y$ e se $z\in [x]$ si ha $z\sim x \sim y$ e quindi $z\in
+[y]$.
+Dunque se $x\sim y$ si ha $[x]\subset [y]$ ma, scambiando i ruoli di $x$ e $y$
+si avrà anche $[y]\subset [x]$ e quindi $[x]=[y]$. D'altra parte se $[x]=[y]$
+essendo $x\sim x$ si ha $x\in [x] = [y]$ e quindi $x\sim y$.
+
+Tornando alla relazione di equivalenza $\sim$ definita su $\NN\times \NN$
+andremo quindi a definire:
+\[
+  \ZZ = (\NN \times \NN)/\sim.
+\]
+
+Ogni elemento di $\ZZ$ è dunque una classe di equivalenza di percorsi
+$m\mapsto n$ tutti con la stessa direzione e lunghezza.
+
+I percorsi possono essere sommati per \emph{concatenazione}. Se concateniamo
+il percorso $m\mapsto n$ con $n\mapsto h$ otteniamo il percorso $m\mapsto h$.
+In generale se vogliamo sommare $m\mapsto n$ con $m'\mapsto n'$
+dobbiamo spostare uno dei due percorsi in modo che il suo punto di partenza coincida
+con il punto di arrivo dell'altro. Se, ad esempio, si ha $m'\ge n$ troveremo $k\in \NN$
+tale che $m'=n+k$ e dunque $(m,n)\sim(m+k,n+k)=(m+k,m')$ da cui
+\[
+  (m+k,m') + (m',n') = (m+k,n')
+\]
+e sommando $n$ alle due componenti del risultato si ottiene
+$(m+k+n,n'+n) = (m+m,n+n')$.
+In generale si può quindi verificare che la somma di due classi di equivalenza
+di percorsi è sempre ben definita nel modo seguente:
+\[
+  [(m,n)] + [(m',n')] = [(m+m',n+n')].
+\]
+Si osserva che se al posto di $(m,n)$ mettiamo $(m+k,n+k)$ si ottiene
+\[
+  [(m+k,n+k)] + [(m',n')] = [(m+m'+k,n+n'+k)] = [(m+m',n+n')]
+\]
+cioè il risultato non cambia (se così non fosse la definizione non sarebbe
+ben posta perché dipenderebbe dal rappresentante scelto).
+
+E' facile verificare che l'addizione così definita gode delle proprietà:
+associativa e commutativa.
+
+Similmente vorremmo dire che il percorso $m\mapsto n$ è maggiore-o-uguale
+del percorso $m\mapsto n'$ quando $n\ge n'$. Se due percorsi non partono
+dallo stesso punto posso sempre spostarne uno dei due mantenendo l'equivalenza e
+riconducendosi al caso in cui entrambi partono dallo stesso punto.
+Procedendo in maniera analoga a quello che abbiamo fatto per la somma
+si ottiene la segunte definizione per la relazione d'ordine $\le$:
+\[
+  [(m,n)] \le [(m',n')] \iff n+m' \ge n' + m.
+\]
+
+E' facile verificare che la relazione d'ordine così definita
+gode della proprietà invariantiva:
+\[
+  i \ge j \iff i+k \ge j+k, \qquad \forall i,j,k\in \ZZ
+\]
+e più in generale è compatibile con la somma:
+\[
+ (i\ge j) \land (i'\ge j') \implies i+i' \ge j+j'.
+\]
+
+Se due percorsi sono equivalenti anche i percorsi opposti lo sono. Questo ci permette
+di definire anche l'operazione di opposto (denotato con l'operatore unario $-$)
+sulle classi di equivalenza:
+\[
+  -[(m,n)] = [(n,m)].
+\]
+Si osservi che sommando un percorso con l'opposto si ottiene la classe
+di equivalenza del percorso nullo:
+\[
+  [(m,n)] + [(n, m)] = [(m+n,n+m)] = [(0,0)]
+\]
+e l'opposto dell'opposto è il percorso originario:
+\[
+  -(-[(m,n)]) = -[(n,m)] = [(m,n)].
+\]
+
+Un percorso $m\mapsto n$ può essere di tre tipi: \emph{positivo}
+se $n>m$, \emph{negativo} se $n<m$ e \emph{nullo} se $m=n$.
+Ogni percorso
+positivo $m\mapsto n$ è equivalente ad un percorso del tipo $0\mapsto k$ dove
+$k$ è la differenza tra $n$ ed $m$ ovvero $n=m+k$.
+I percorsi \emph{positivi} sono quindi rappresentati dalla coppia $(0,k)$ con $k\in \NN$,
+$k\neq 0$. Il percorso nullo è equivalente al percorso $0\mapsto 0$ e può quindi essere
+rappresentato, come i percorsi positivi ponendo $k=0$, dalla coppia $(0,0)$.
+I percorsi \emph{negativi} sono della forma $m\mapsto n$ con $n<m$. In tal caso esiste $k\in \NN$
+tale che $m=n+k$ e il percorso può essere rappresentato dal suo equivalente $k \mapsto 0$ ovvero
+dalla coppia $(k,0)$ con $k\in \NN$, $k\neq 0$.
+
+Se chiamiamo $\NN'\subset \ZZ$ l'insieme delle classi di equivalenza
+dei percorsi positivi o nulli potremo scrivere:
+\[
+  \NN' = \{[(0,k)]\colon k\in \NN\}.
+\]
+Si osserva allora che l'addizione ristretta a $\NN'$ si esegue
+banalmente sommando la seconda componente su $\NN$:
+\[
+  [(0,k)] + [(0,j)] = [(0,k+j)]
+\]
+e l'ordinamento su $\NN'$ corrisponde all'ordinamento su $\NN$:
+\[
+  [(0,k)] \ge [(0,j)] \iff k \ge j.
+\]
+Significa che $\NN'$ è \emph{isomorfo} ad $\NN$ tramite la bigezione
+$\NN\mapsto \NN'$ dato da $k\mapsto [(0,k)]$. Tale bigezione
+preserva l'addizione e l'ordinamento e in questo senso diciamo che è un
+isomorfismo. Il numero naturale $0\in \NN$ corrisponde in tale isomorfismo
+al percorso nullo $[(0,0)]\in \NN'$.
+
+In questo senso possiamo pensare che $\ZZ$ sia una estensione di $\NN$.
+D'ora in poi chiameremo \emph{numeri interi} gli elementi di $\ZZ$
+e penseremo ai numeri naturali come al sottoinsieme $\NN'$ dei numeri
+interi.
+Si ha infatti:
+\[
+  \ZZ = \NN' \cup (-(\NN'\setminus\{0\}))
+\]
+dove $\NN'$ sono dunque i numeri interi positivi o nulli, $\NN'\setminus\{0\}$
+sono i numeri interi positivi $-(\NN'\setminus\{0\})$ sono i numeri interi
+negativi.
+
+Visto che $\NN$ era un qualunque insieme soddisfacente gli assiomi di Peano
+e visto che anche $\NN'$ come $\NN$ soddisfa gli assiomi di Peano,
+potremo d'ora in poi dimenticare il vecchio $\NN$ e utilizzare $\NN'$ al suo
+posto chiamandolo, d'ora in poi $\NN$. Supporremo dunque che sia
+$\NN \subset \ZZ$.
+
+Dunque abbiamo $0,1,2,\dots \in \ZZ$ ma anche $-1,-2,-3, \dots \in \ZZ$.
+Dalle definizioni precedenti è facile osservare che $-0=0$.
+
+Oltre all'addizione e all'ordinamento che abbiamo estesi da $\NN$ a $\ZZ$,
+su $\ZZ$ possiamo definire l'operazione di \emph{sottrazione} (denotata con
+l'operatore binario $-$) come segue:
+\[
+  a-b = a + (-b).
+\]
+Osserviamo inoltre che l'opposto $-a$ di un intero $a\in \ZZ$ è l'unico
+intero tale che
+\[
+  a + (-a) = 0
+\]
+e dunque in generale $a-a=0$.
+
+Su $\NN$ avevamo definito anche l'operazione di moltiplicazione e vogliamo
+estendere anch'essa a tutto $\ZZ$.
+Avendo identificato $\NN$ con $\NN'$ ora scriveremo $n-m$ al posto di $[(m,n)]$.
+Se vogliamo mantenere la proprietà distributiva del prodotto rispetto alla somma
+dovrà essere, per ogni $n\in \NN$:
+\[
+  0 = 0\cdot n = (1+(-1))\cdot n = 1\cdot n + (-1)\cdot n
+   = n + (-1)\cdot n
+\]
+da cui si ottiene che $(-1)\cdot n$ è l'opposto di $n$, ovvero:
+\[
+  -n = (-1)\cdot n.
+\]
+Analogamente dovrà essere $n\cdot (-1) = -n$.
+
+Allora se $n,m\in \NN$ e se vogliamo mantenere la proprietà associativa
+della moltiplicazione dovremo avere:
+\[
+  n \cdot (-m) = n \cdot (-1) \cdot m = (-n)\cdot m = (-1)\cdot (n\cdot m)
+   = -(n\cdot m)
+\]
+(più per meno: meno)
+e
+\[
+(-n)\cdot(-m) = (-1) \cdot n \cdot (-1) \cdot m = (-1)(-n)\cdot m
+ = (-(-n))\cdot m = n\cdot m
+\]
+(meno per meno: più).
+Sulle classi di equivalenza potremo quindi definire
+la moltiplicazione come segue:
+\[
+[(m,n)]\cdot [(m',n')] = [(n\cdot n' + m\cdot m',n\cdot m' + n'\cdot m)].
+\]
+Si potrà quindi verificare che cambiando i rappresentanti scelti per le
+classi (ad esempio sostituendo $(m,n)$ con $(m+k,n+k)$) il risultato non
+cambia (si utilizzerà la proprietà distributiva su $\NN$).
+Si potrà quindi verificare che la moltiplicazione così definita su $\ZZ$
+estende la moltiplicazione di $\NN$ e continua a mantenere le proprietà associativa,
+commutativa e distributiva.
+
 
 \section{Appendice: Asse del tempo}
 Asse del tempo:
