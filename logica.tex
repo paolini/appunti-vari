@@ -2024,6 +2024,128 @@ Si potrà quindi verificare che la moltiplicazione così definita su $\ZZ$
 estende la moltiplicazione di $\NN$ e continua a mantenere le proprietà associativa,
 commutativa e distributiva.
 
+\section{I numeri razionali}
+
+In maniera simile a come abbiamo ottenuto gli interi estendendo i naturali in
+modo da poter invertire l'operazione di addizione, vogliamo estendere gli
+inter in modo da poter invertire l'operazione di moltiplicazione.
+Dati due interi $p,q$ con $q\neq 0$,
+consideriamo la \emph{dilatazione} $q\mapsto p$ che
+lascia fisso lo $0$, manda $q$ in $p$ e manda ogni multiplo di $q$ ovvero
+ogni intero $n$ della forma $n=kq$ in $kp$.
+Chiamiamo \myemph{frazione} la coppia $q\mapsto p$ che denoteremo più espressivamente
+nella forma $\frac{p}{q}$.
+Nella frazione $\frac{p}{q}$ il numero $p$ viene chiamato \myemph{numeratore}
+e il numero $q$ \myemph{denominatore}.
+Sulle frazioni possiamo mettere una relazione di equivalenza.
+In effetti se $p'=kp$ e $q'=kq$ con $k\in \ZZ$, $k\neq 0$,
+le dilatazioni $q\mapsto p$ e $q'\mapsto p'$
+agiscono nello stesso modo sui multipli di $q'$.
+Infatti se $n=jq'=kjq$ la dilatazione $q\mapsto p$ lo manda in $kjp$ e
+la dilatazione $q'\mapsto p'$ lo manda in $jp'=kjp$.
+Se $q'=kq$ e $p'=kp$ allora equivalentemente si ha $pq'=p'q$.
+Definiamo quindi la relazione di equivalenza tra frazioni:
+\[
+  \frac{p}{q} \sim \frac{p'}{q'} \iff pq' = p'q
+\]
+e definiamo
+i numeri razionali come il quoziente
+(ricordando che $\frac p q$ è stato definito come la coppia
+$(q,p)=(q\mapsto p)$ con $q\neq 0$):
+\[
+  \QQ = ((\ZZ\setminus\{0\})\times\ZZ)/{\sim}.
+\]
+
+Le frazioni possono essere moltiplicate e sommate tra loro con le ben note
+regole:
+\[
+  \frac{p}{q}\cdot \frac{p'}{q'} = \frac{pp'}{qq'},\qquad
+  \frac{p}{q} + \frac{p'}{q'} = \frac{pq' + p'q}{qq'}
+\]
+e possono essere ordinate con il criterio:
+\[
+ \frac{p}{q} \ge \frac{p'}{q'} \iff pq' \ge p'q.
+\]
+L'opposto di una frazione si ottiene prendendo l'opposto del numeratore
+(o, sarebbe lo stesso, del denominatore).
+
+E' facile verificare che somma, prodotto, opposto  e ordinamento non dipendono
+dalla classe di equivalenza quindi tali operazioni sono ben definite
+anche su $\QQ$. Si verifica inoltre che tali operazioni mantengono tutte le
+proprietà che avevamo già ottenuto per le stesse operazioni in $\ZZ$.
+Osserviamo che la funzione $\phi\colon \ZZ \to \QQ$ definita da
+$\phi(n) = \frac{n}{1}$ è un \emph{isomorfismo} di $\ZZ$ in
+$\ZZ' = \phi(\ZZ)\subset \QQ$ nel senso che $\phi\colon \ZZ \to \ZZ'$ è bigettiva
+e trasforma le operazioni di addizione, moltiplicazione, opposto e ordinamento
+definite in $\ZZ$ nelle corrispondenti operazioni definite in $\QQ$.
+In particolare le classi di equivalenza delle frazioni $\frac{0}{1}$
+e $\frac{1}{1}$ corrispondono
+a $0$ e $1$ di $\ZZ$
+Ad esempio:
+\[
+  \phi(n+m) = \frac{n+m}{1} = \frac{n}{1} + \frac{m}{1} = \phi(n) + \phi(m).
+\]
+Visto che di $\ZZ$ non ci interessa sapere come è stato costruito ma ci
+interessano solamente le sue proprietà, d'ora in poi potremmo rimpiazzare
+$\ZZ$ con $\ZZ'$ supponendo quindi che $\ZZ \subset \QQ$.
+All'interno di $\ZZ$
+manteniamo pure i numeri naturali $\NN$ cosicché avremo $\NN \subset \ZZ \subset \QQ$.
+
+Ogni numero razionale $r\in \QQ$, $r\neq 0$ ha ora un \emph{reciproco}
+(inverso moltiplicativo) che denotiamo con $r^{-1}$ o con $\frac{1}{r}$
+e che ha la proprietà:
+\[
+  r \cdot r^{-1} = 1.
+\]
+Questo perché se $p\neq 0$ e $q\neq 0$ il prodotto delle frazioni $\frac{p}{q}$
+e $\frac q p$ è pari a $1$.
+Questo ci permette di definire l'operazione di divisione tra numeri razionali
+quando il secondo operando non è nullo:
+\[
+  r / s = r \cdot s^{-1} \qquad \text{se $r,s \in \QQ$, $s\neq 0$}.
+\]
+Osserviamo che se $r,s\in \QQ \cap \ZZ$ sono interi, allora si ha
+\[
+  r / s = \frac{r}{1} \cdot \frac{1}{s} = \frac{r}{s}.
+\]
+Questa uguaglianza giustifica l'uso della notazione $\frac{r}{s}$ per denotare
+$r/s$ anche quando $r$ ed $s$ non sono interi. Anche in tal caso diremo
+(forse impropriamente?) che $r$ è il numeratore ed $s$ il denominatore.
+Il risultato di una divisione si chiama \myemph{rapporto}
+e può quindi essere rappresentato con le seguenti notazioni:
+\[
+  r/s = \frac{r}{s} = r \cdot s^{-1}.
+\]
+
+Le proprietà delle operazioni che abbiamo ottenuto sull'insieme numerico
+$\QQ$ sono notevoli e, in base alla seguente definizione, ci permettono
+di dire che $\QQ$ è un \emph{campo}.
+
+\begin{definition}[campo]
+  Sia $K$ un insieme su cui sono definite due operazioni $+$ e $\cdot$
+  e siano $0,1 \in K$ tali che:
+  \begin{enumerate}
+    \item sia $+$ che $\cdot$ sono operazioni associative e commutative;
+    \item vale la proprietà distributiva: $(x+y)\cdot z = x\cdot z + y\cdot z$;
+    \item $0$ e $1$ sono rispettivamente gli elementi neutri delle operazioni $+$ e $\cdot$;
+    \item ogni elemento ha l'opposto, ovvero per ogni $x\in K$ esiste $-x\in K$
+    tale che $x+(-x) = 0$; ogni elemento di $K$ tranne $0$ ha il reciproco
+    ovvero per ogni $x\in K\setminus\{0\}$ esiste $x^{-1}\in K$ tale che
+    $x\cdot x^{-1}=1$.
+  \end{enumerate}
+\end{definition}
+
+Di più, $\QQ$ è un \emph{campo ordinato} secondo la seguente definizione
+\begin{definition}[campo ordinato]
+  Sia $K$ un campo su cui è definita una relazione d'ordine totale $\le$.
+  Diremo che $K$ è un \myemph{campo ordinato} se vale le seguenti
+  proprietà di compatibilità dell'ordinamento con la struttura di campo:
+  \[
+    x \le y \iff x+z \le y+z \qquad
+    x\ge 0,\ y \ge 0 \implies x\cdot y \ge 0.
+  \]
+\end{definition}
+
 
 \section{Appendice: Asse del tempo}
 Asse del tempo:
