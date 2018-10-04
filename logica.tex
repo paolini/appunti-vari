@@ -22,7 +22,10 @@
 \DeclareMathOperator{\diag}{diag}
 \newcommand{\myemph}[1]{\emph{#1}\marginpar{#1}}
 
+\newcommand{\abs}[1]{\left\vert{#1}\right\vert}
 \newcommand{\enclose}[1]{\left({#1}\right)}
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
 
 \def\Xint#1{\mathchoice
 {\XXint\displaystyle\textstyle{#1}}%
@@ -1220,10 +1223,32 @@ Se
 Allora $P(n)$ è vero per ogni $n\in \NN$.
 \end{theorem}
 
+\begin{definition}[massimo/minimo]
+  Se $\le$ è una relazione d'ordine definita su un insieme $X$ e
+  $A\subset X$ diremo che $a$ è un \emph{massimo} di $A$ e
+  scriveremo
+  \[
+    a = \max A
+  \]
+  se $a\in A$ e $A\le a$ (cioè $x\le a$ per ogni $x\in A$).
+  Diremo che $a$ è un \emph{minimo} di $A$ e scriveremo
+  \[
+    a = \min A
+  \]
+  se $a\in A$ e $a\le A$ (cioè $a\le x$ per ogni $x\in A$).
+\end{definition}
+
+E' facile dimostrare che se prendiamo $I_n = \{k\in \NN\colon k<n\}$
+ogni sottoinsieme non vuoto $A$ di $I_n$ ha sia massimo che minimo
+(lo si dimostri per induzione su $n$). Su tutto $\NN$ esistono
+però degli insiemi non vuoti che non hanno massimo. Ad esempio l'insieme
+dei numeri pari:
+$2\cdot \NN = \{2k\colon k\in \NN\}$ non ha massimo perchè se $n$ è pari
+anche $n+2$ è pari ed è strettamente maggiore di $n$.
+
 \begin{theorem}[buon ordinamento di $\NN$]
-Se $A$ è un sottoinsieme non vuoto di $\NN$ allora esiste (unico) $a \in A$
-tale che per ogni $x\in A$ si ha $a\le x$ (ovvero $a$ è minimo di $A$).
-Scriveremo in tal caso $a=\min A$.
+Se $A$ è un sottoinsieme non vuoto di $\NN$ allora
+$A$ ha minimo.
 \end{theorem}
 %
 \begin{proof}
@@ -1235,6 +1260,7 @@ Dunque $n < A$ e quindi $n+1 \le A$. Abbiamo quindi mostrato che se $n\in B$ anc
 Per il principio di induzione deduciamo che $B=\NN$ e quindi $A$ sarebbe vuoto,
 cosa che abbiamo escluso per ipotesi.
 \end{proof}
+
 
 \section{Il teorema di incompletezza di G\"odel (cenni)}
 
@@ -1773,10 +1799,118 @@ $\#A < \#\NN$.
 
 \end{proof}
 
+\section{Ennuple e successioni}
+
+Abbiamo denotato con $B^A$ l'insieme delle funzioni $f\colon A \to B$ e
+abbiamo denotato con $I_n = \{1, 2, \dots, n-1\} = \{k\in \NN \colon k<n\}$.
+Se $A$ è un insieme qualunque e $n\in\NN$ definiamo allora:
+\[
+   A^n = A^{I_n} = \{\vec a\colon \{1, 2, \dots, n-1\}\to A\}.
+\]
+Gli elementi $\vec a \in A^n$ vengono chiamate $n$-uple (ennuple) perché
+sono identificate dagli $n$ valori che assumono sugli $n$ numeri $0,1,\dots,n-1$.
+Normalmente si utilizza la notazione $a_k = \vec a(k)$ per denotare
+il $k$-esimo valore assunto dalla funzione $\vec a$ e si scriverà:
+\[
+  \vec a = (a_0, a_1, \dots, a_{n-1}).
+\]
+Gli elementi (di solito saranno numeri) $a_0$, $a_1$, \dots, $a_{n-1}$ vengono
+chiamati componenti della ennupla $\vec a$. I pedici $0,1, \dots, n-1$ vengono
+chiamati \emph{indici}.
+
+Noi utilizzeremo la convenzione di usare simboli in \emph{grassetto} per denotare
+le ennuple. Nella scrittura a mano (dove il grassetto è impraticabile)
+si scriverà $\underline{a}$ al posto di $\vec a$. Un'altra alternativa (meno comoda)
+è $\stackrel{\to}{a}$.
+La notazione è quella utilizzata in fisica per denotare i \emph{vettori} perché,
+in effetti, se mettiamo una base in uno spazio vettoriale di dimensione finita
+ogni vettore può essere identificato dalla ennupla delle sue componenti rispetto
+alla base.
+
+Ad esempio l'ennupla $\vec a = (3,5,3)$ è elemento di $\NN^3$.
+Sarà $\vec a = (a_0, a_1, a_2)$ con $a_0=3$, $a_1=5$, $a_2=3$.
+Formalmente $\vec a$ è definita come una funzione:
+$\vec a = \{0\mapsto 3, 1\mapsto 5, 2 \mapsto 3\}$ ma in pratica non è importante
+quale sia la definizione (altri testi potrebbero dare definizioni diverse ma equivalenti)
+ma solo quali siano le sue proprietà.
+E' anche consuetudine utilizzare gli indici a partire da $1$ invece che da $0$
+e quindi spesso si troverà scritto $\vec a = (a_1, a_2, a_3)$.
+
+Osserviamo che se $n=2$ la notazione utilizzata per le ennuple $A^2$ è la stessa
+notazione utilizzata per le coppie $A\times A$.
+L'ambiguità è giustificata dal fatto che si potrebbe in effetti identificare
+$A^2$ con $A\times A$ in quanto gli elementi di $A^2$ soddisfano la proprietà
+caratterizzante le coppie:
+\[
+  (x,y) = (x',y') \iff (x=x') \land (y=y').
+\]
+Osserviamo che formalmente $(A\times A)\times A \neq A^3$ in quanto gli elementi
+del primo insieme sono coppie del tipo $((x,y),z)$ mentre gli elementi
+del secondo insieme sono $3$-uple (triple) della forma $(x,y,z)$.
+E' chiaro quindi che pur essendo oggetti diversi possono essere messi
+in corrispondenza tra loro.
+
+In maniera analoga chiameremo \emph{successioni} a valori in $A$ gli
+elementi dell'insieme
+\[
+  A^\NN = \{\vec a\colon \NN \to A\}.
+\]
+Di nuovo useremo la notazione $a_k = \vec a(k)$ per denotare i valori
+della successione $\vec a$ e scriveremo, in maniera espressiva:
+\[
+  \vec a = (a_0, a_1, a_2, \dots, a_n, \dots).
+\]
+Gli elementi $a_0, a_1, \dots$ vengono chiamati \emph{termini} o \emph{valori}
+della successione. I pedici $0,1,\dots$ vengono chiamati \emph{indici} come per
+le ennuple.
+
+Per scrivere una successione a partire dai suoi termini
+si può usare la notazione $\vec a = (a_n)_{n\in \NN}$ o
+$\vec a = (a_n \colon n \in \NN)$
+o anche
+$\vec a = (a_n)_{n=0}^{+\infty}$. In queste notazioni la variabile $n$ è muta.
+Spesso tali notazioni si abbreviano in una
+notazione (formalmente impropria) $\vec a = (a_n)$ o anche $\vec a = a_n$.
+
+Per esempio la funzione $\vec a (n) = n^2$ definisce la successione dei quadrati:
+\[
+ \vec a = (0,\ 1,\ 4,\ 9,\ 16,\ \dots, n^2,\ \dots).
+\]
+Ma più spesso si dirà: consideriamo la successione $a_n = n^2$ indicando il
+termine generico invece dell'intera successione.
+
+Deve essere chiaro che la successione $(a_n)_{n\in \NN}$ è cosa diversa
+dall'insieme dei suoi valori $\{a_n\colon n\in \NN\}$.
+Ad esempio
+le successioni con termini
+\[
+a_k = \begin{cases}
+      1 & \text{se $k=0$}\\
+      0 & \text{se $k>0$}
+      \end{cases},
+       \qquad
+b_k = \begin{cases}
+     0 & \text{se $k=0$}\\
+     1 & \text{se $k>0$}
+     \end{cases},
+\]
+sono successioni diverse ma hanno lo stesso insieme di valori
+\[
+\{a_k\colon k\in \NN\} = \{b_k \colon k\in \NN \} = \{ 0, 1\}.
+\]
+La differenza sta nel fatto che in un insieme gli elementi non sono ordinati
+e non contano le ripetizioni,
+nelle succesioni invece (come nelle coppie e nelle ennuple) conta l'ordine e
+contano eventuali ripetizioni.
+
+Ennuple e successioni potrebbero essere entrambe racchiuse dal termine
+\emph{sequenze}.
+Una ennupla sarebbe una sequenza finita, una successione una sequenza infinita.
+
 \section{I numeri interi}
 
-Dati due numeri naturali $n,m\in \NN$ vogliamo definire la loro
-\myemph{differenza} cioè al \emph{percorso} $m\mapsto n$ necessario per
+Dati due numeri naturali $n,m\in \NN$ vogliamo definire
+il \emph{percorso} (o traslazione) $m\mapsto n$ necessario per
 andare da $m$ a $n$. Se $n\ge m$ significa che $n$ si può ottenere da $m$ sommando
 un certo numero naturale $k$: $n=m+k$. Il numero $k$ viene chiamato
 \myemph{differenza} tra $n$ ed $m$. Se invece $n<m$ il percorso $m\mapsto n$
@@ -2024,6 +2158,124 @@ Si potrà quindi verificare che la moltiplicazione così definita su $\ZZ$
 estende la moltiplicazione di $\NN$ e continua a mantenere le proprietà associativa,
 commutativa e distributiva.
 
+Su $\ZZ$ si può definire la funzione \emph{valore assoluto}
+\[
+  \abs{n} =
+  \begin{cases}
+      n & \text{se $n\ge 0$}\\
+      -n & \text{se $n<0$}
+  \end{cases}.
+\]
+L'immagine di tale funzione definita su $\ZZ$ è $\NN$.
+
+\section{Divisibilità e numeri primi}
+
+Se $n,m\in \ZZ$ e se esiste $k\in \ZZ$ tale che $m=k\cdot m$
+diremo che $n$ \myemph{divide} $m$,
+che $m$ è un \myemph{divisore} di $n$
+e scriveremo $n\mid m$.
+Ad esempio se $2\mid n$ diremo che $n$ è \myemph{pari}, altrimenti diremo che $n$
+è \myemph{dispari}.
+Visto che $n = 1\cdot n$ è chiaro che $1$ e $n$ sono sempre divisori di $n$
+(e anche $-1$ e $-n$ lo sono).
+
+Definiamo il \emph{massimo comun divisore} di due numeri $n,m$ come
+\[
+  MCD(n,m) = \max \{k\in \NN\colon (k\mid n) \land (k \mid m)\}.
+\]
+Tale massimo esiste perché l'insieme preso in considerazione
+è non vuoto (contiene sempre il numero $1$) ed è finito perchè
+
+
+Se $n=k\cdot m$ con $k\neq \pm 1$ (cioè $k\neq 1$ e $k\neq -1$)
+diremo che $n$ è \emph{riducibile}.
+In caso contrario diremo
+che $n$ è \emph{irriducibile}.
+
+\begin{theorem}[teorema fondamentale dell'aritmetica]
+  Ogni $n\in \NN$, $n\ge 2$, può essere scritto nella forma:
+  \begin{equation}\label{eq:48273}
+    n = p_1 \cdot p_2 \cdot \ldots \cdot p_N
+  \end{equation}
+  dove tutti i $p_k$ sono irriducibili e
+  $2 \le p_1 \le p_2 \le \dots \le p_N$.
+  Inoltre i $p_k$ sono univocamente determinati (la
+  decomposizione~\eqref{eq:48273} è unica).
+
+  L'espressione \eqref{eq:48273} viene chiamata \myemph{fattorizzazione}
+  di $n$ (in quanto gli operandi della moltiplicazione
+  si chiamano \emph{fattori}).
+\end{theorem}
+%
+\begin{proof}
+  Dimostriamo per induzione su $m$ il seguente
+  $P(m)$: ``ogni naturale $n<m$, $n\ge 2$
+    ammette una unica decomposizione
+    nella forma \eqref{eq:48273}''.
+
+  L'enunciato è banalmente vero per $m=3$ in quanto l'unico $n$ in questione
+  è $n=2$ e se $k,j\ge 2$ allora
+  $k\cdot j\ge 4$ e quindi $n=2$ non può essere scritto come prodotto di due
+  naturali non inferiori a $2$.
+  Significa che $2$ è irriducibile e può essere scritto in modo unico come $2=2$
+  (prodotto di un unico irriducibile).
+
+  Supponiamo ora di sapere che vale $P(m)$ e dimostriamo $P(m+1)$.
+  E' sufficiente dimostrare che $n=m$ può essere scritto in modo unico
+  nella forma~\eqref{eq:48273} (in quanto se $n<m$ il risultato è garantito
+  dall'ipotesi induttiva $P(m)$).
+  Sia $p_1 = \min\{p\ge 2\colon p|n\}$.
+  Tale minimo esiste certamente perché l'insieme non è vuoto visto che contiene
+  quantomeno il numero $n$. Inoltre $p_1$ è certamente irriducibile perché se
+  $p_1$ avesse a sua volta un divisore $p$ allora anche $p$ sarebbe un divisore
+  di $n$ e sarebbe $p<p_1$ contro l'ipotesi che $p_1$ fosse il minimo.
+  Visto che $p_1\mid n$ esiste $n'$ tale che $n=p_1\cdot n'$.
+  Visto che $p_1>1$ certamente è $n'<n=m$ e dunque applicando $P(m)$ sappiamo
+  che $n'$ ammette una unica decomposizione che possiamo scrivere nella forma:
+  \[
+    n' = p_2 \cdot p_3 \dots p_N
+  \]
+  (abbiamo utilizzato gli indici a partire da $2$ invece che da $1$ perché $p_1$
+  è già stato utilizzato). Dunque avremo che
+  \[
+    n = p_1 \cdot n' = p_1 \cdot p_2 \dots p_N
+  \]
+  come volevamo dimostrare. L'unica cosa che rimane da verificare è che
+  sia $p_1\le p_2$. Ma visto che $p_2 \mid n'$ e $n'\mid n$ scopriamo che
+  $p_2\mid n$ e quindi essendo $p_1$ il minimo divisore di $n$ deve essere
+  $p_1\le p_2$.
+\end{proof}
+
+Un numero $p$ si dice essere \myemph{primo}
+se ogni volta che $p$ divide un prodotto esso divide almeno uno dei due fattori
+cioè se per ogni $n,m\in \ZZ$ si ha:
+\[
+  p \mid m\cdot n \implies (p\mid m)\lor(p\mid n).
+\]
+
+Il prossimo teorema ci dice che sui numeri interi \emph{primo} e \emph{irriducibile} sono sinonimi (e spesso la definizione di numero primo viene espressa mediante irriducibilità) ma in contesti più generali si possono distinguere i due concetti.
+
+\begin{theorem}
+Un numero  $p\in \ZZ$ è primo se e solo se è irriducibile.
+\end{theorem}
+%
+\begin{proof}
+Supponiamo che $p$ sia primo e che si possa scrivere $p=n\cdot m$ con $n,m\in\ZZ$.
+Allora chiaramente $p\mid n\cdot m$ e quindi $p$ divide almeno uno tra $n$ e $m$.
+Senza perdita di generalità possiamo supporre $p\mid n$ da cui $p=p\cdot m$.
+Significa quindi che $m=1$ e quindi $p$ non è riducibile.
+
+Viceversa supponiamo che $p$ sia irriducibile e supponiamo che $p\mid n\cdot m$.
+Per il teorema fondamentale dell'aritmetica $n$ e $m$ hanno una unica
+fattorizzazione e il prodotto delle fattorizzazioni mi dà una fattorizzazione
+di $n\cdot m$. D'altra parte la fattorizzazione di $p$ è $p$ stesso in quanto
+$p$ è irriducibile. Dunque se $p\mid n\cdot m$ necessariamente $p$ è uno dei
+termini della fattorizzazione di $n\cdot m$ ma visto che tale fattorizzazione
+si ottiene moltiplicando tra loro le fattorizzazioni di $n$ e di $m$,
+si deduce che $p$ è in una delle due fattorizzazioni e quindi divide
+uno tra $n$ e $m$.
+\end{proof}
+
 \section{I numeri razionali}
 
 In maniera simile a come abbiamo ottenuto gli interi estendendo i naturali in
@@ -2055,6 +2307,18 @@ $(q,p)=(q\mapsto p)$ con $q\neq 0$):
 \[
   \QQ = ((\ZZ\setminus\{0\})\times\ZZ)/{\sim}.
 \]
+
+Data una frazione $\frac{p}{q}$ possiamo considerare $k=MCD(p,q)$.
+Essendo $k\mid p$ e $k\mid q$ si avrà $p = kp'$ e $q=kq'$ e quindi la frazione
+$\frac{p}{q}$ risulta equivalente alla frazione (ridotta) $\frac{p'}{q'}$.
+A questo punto si avrà $MCD(p',q')=1$ e quindi la frazione ottenuta
+non può essere ulteriormente ridotta. Se $MCD(p,q)=1$ si dirà che la frazione
+$\frac{p}{q}$ è ridotta ai minimi termini.
+Se $q<0$ si potrà inoltre cambiare segno sia a $p$ che a $q$ in quanto $\frac{-p}{-q}$
+è equivalente a $\frac p q$. Data una qualunque frazione
+si potrà dunque trovare una frazione equivalente, ridotta ai minimi termini,
+con denominatore positivo. Tale frazione è unica ed è quindi un naturale
+rappresentante della classe di equivalenza.
 
 Le frazioni possono essere moltiplicate e sommate tra loro con le ben note
 regole:
@@ -2145,6 +2409,55 @@ Di più, $\QQ$ è un \emph{campo ordinato} secondo la seguente definizione
     x\ge 0,\ y \ge 0 \implies x\cdot y \ge 0.
   \]
 \end{definition}
+
+\section{I numeri reali}
+
+La costruzione degli insiemi numerici è motivata dalla necessità di misurare.
+Con i numeri naturali possiamo misurare (diremmo: contare) gli oggetti discreti:
+sassi, pecore, monete. Con i numeri interi possiamo considerare i fenomeni di
+aumento e diminuzione di queste quantità discrete (differenze tra numeri naturali).
+Con i numeri razionali possiamo suddividere l'unità di misura per misurare
+lunghezze, aree, tempi, con precisione arbitraria.
+
+Non siamo però completamente soddisfatti di come i numeri razionali possono
+misurare (ad esempio) le lunghezze. Per il teorema di Pitagora sappiamo,
+ad esempio, che il quadrato costruito sulla diagonale di un quadrato di lato
+unitario ha area pari a due unità quadrate. Quindi se il lato del quadrato
+ha misura $1$ la misura della diagonale dovrebbe essere rappresentata
+da un numero $x$ tale che $x^2=2$. Possiamo facilmente verificare
+che non esiste un numero razionale con tale proprietà.
+
+\begin{theorem}[Pitagora]
+  Non esiste $x\in \QQ$ tale che $x\cdot x=2$.
+\end{theorem}
+%
+\begin{proof}
+  Supponiamo per assurdo che tale $x$ esista. Allora si potrebbe
+  scrivere $x=\frac{p}{q}$ con $p,q\in \ZZ$, $q>0$.
+  Possiamo anche supporre che la frazione sia ridotta ai minimi termini
+  e quindi che $p$ e $q$ non abbiano fattori comuni. 
+  Per assurdo stiamo supponendo che sia
+  \[
+    2 = x\cdot x= \frac{p\cdot p}{q\cdot q}
+  \]
+  da cui
+  \[
+   p\cdot p = 2 q\cdot q.
+  \]
+  Significa che $p\cdot p$ è pari cioè $2\mid p\cdot p$.
+  Essendo $2$ primo significa che $2 \mid p$ e quindi si può
+  scrivere $p=2p'$ con $p'\in \ZZ$. Allora abbiamo
+  \[
+    (2\cdot p)\cdot (2\cdot p) = 2 q \cdot q
+  \]
+  che è equivalente a
+  \[
+    2 p\cdot p = q\cdot q.
+  \]
+  Ma allora, per lo stesso ragionamento di prima, anche $q$ è divisibile per
+  $2$. Ma questo è assurdo perché abbiamo assunto che $p$ e $q$ non avessero
+  divisori comuni.
+\end{proof}
 
 
 \section{Appendice: Asse del tempo}
