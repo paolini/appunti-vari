@@ -22,7 +22,10 @@
 \DeclareMathOperator{\diag}{diag}
 \newcommand{\myemph}[1]{\emph{#1}\marginpar{#1}}
 
+\newcommand{\abs}[1]{\left\vert{#1}\right\vert}
 \newcommand{\enclose}[1]{\left({#1}\right)}
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
 
 \def\Xint#1{\mathchoice
 {\XXint\displaystyle\textstyle{#1}}%
@@ -60,6 +63,8 @@ Puoi scaricare o contribuire a questi appunti su
 \author{E. Paolini}
 
 \maketitle
+
+\tableofcontents
 
 \section{Sistemi formali}
 Fin dai tempi di Aristotele si è cercato di individuare e descrivere
@@ -1218,10 +1223,32 @@ Se
 Allora $P(n)$ è vero per ogni $n\in \NN$.
 \end{theorem}
 
+\begin{definition}[massimo/minimo]
+  Se $\le$ è una relazione d'ordine definita su un insieme $X$ e
+  $A\subset X$ diremo che $a$ è un \emph{massimo} di $A$ e
+  scriveremo
+  \[
+    a = \max A
+  \]
+  se $a\in A$ e $A\le a$ (cioè $x\le a$ per ogni $x\in A$).
+  Diremo che $a$ è un \emph{minimo} di $A$ e scriveremo
+  \[
+    a = \min A
+  \]
+  se $a\in A$ e $a\le A$ (cioè $a\le x$ per ogni $x\in A$).
+\end{definition}
+
+E' facile dimostrare che se prendiamo $I_n = \{k\in \NN\colon k<n\}$
+ogni sottoinsieme non vuoto $A$ di $I_n$ ha sia massimo che minimo
+(lo si dimostri per induzione su $n$). Su tutto $\NN$ esistono
+però degli insiemi non vuoti che non hanno massimo. Ad esempio l'insieme
+dei numeri pari:
+$2\cdot \NN = \{2k\colon k\in \NN\}$ non ha massimo perchè se $n$ è pari
+anche $n+2$ è pari ed è strettamente maggiore di $n$.
+
 \begin{theorem}[buon ordinamento di $\NN$]
-Se $A$ è un sottoinsieme non vuoto di $\NN$ allora esiste (unico) $a \in A$
-tale che per ogni $x\in A$ si ha $a\le x$ (ovvero $a$ è minimo di $A$).
-Scriveremo in tal caso $a=\min A$.
+Se $A$ è un sottoinsieme non vuoto di $\NN$ allora
+$A$ ha minimo.
 \end{theorem}
 %
 \begin{proof}
@@ -1234,7 +1261,8 @@ Per il principio di induzione deduciamo che $B=\NN$ e quindi $A$ sarebbe vuoto,
 cosa che abbiamo escluso per ipotesi.
 \end{proof}
 
-\section{il teorema di incompletezza di G\"odel (cenni)}
+
+\section{Il teorema di incompletezza di G\"odel (cenni)}
 
 Il teorema di incompletezza di G\"odel afferma che ogni
 sistema formale sufficientemente potente (diciamo che sia in grado di
@@ -1261,7 +1289,7 @@ dimostrato e quindi tale sistema sarebbe \myemph{incoerente} (ci sono degli assi
 falsi oppure delle regole di inferenza che permettono di dedurre enunciati falsi
 a partire da enunciati veri).
 
-\section{cardinalità}
+\section{Cardinalità}
 
 La teoria degli insiemi è nata con l'intento di formalizzare l'utilizzo degli
 insiemi con infiniti elementi. Infatti finché gli insiemi hanno un numero finito
@@ -1315,6 +1343,24 @@ necessariamente sarà iniettiva.
 Questa dimostrazione intuitiva non può essere formalizzata con gli assiomi che
 abbiamo introdotto finora ma richiede un assioma aggiuntivo chiamato
 \myemph{assioma della scelta} (AC).
+
+Un'altra dimostrazione che richiede l'assioma della scelta (e che non faremo)
+garantisce che dati due insiemi $A$ e $B$ possiamo confrontarne la cardinalità:
+\[
+  (\#A \le \#B) \lor (\#B \le \#A).
+\]
+Significa cioè che se non esiste una funzione iniettiva da $A$ in $B$ allora
+deve esistere una funzione iniettiva da $B$ in $A$.
+
+\begin{axiom}[assioma della scelta]
+  Se $A$ è un insieme i cui elementi sono tutti insiemi non vuoti allora
+  esiste una funzione $f\colon A \to \bigcup A$ tale che
+  \[
+    f(X) \in X
+  \]
+  (cioè la funzione manda ogni insieme elemento di $A$ in un suo elemento).
+\end{axiom}
+
 Tale assioma serve a garantire che data una famiglia arbitraria di insiemi
 non vuoti esiste un insieme formato da un elemento per ognuno degli insiemi
 della famiglia. Per quanto possa sembrare strano tale assioma risulta
@@ -1560,7 +1606,7 @@ Significa che $\psi$ è l'inversa di $\phi$
 e che quindi $\phi$ è bigettiva.
 \end{proof}
 
-\section{insiemi finiti/infiniti}
+\section{Insiemi finiti/infiniti}
 
 L'insieme dei numeri naturali è, per certi versi, paradossale, come si può
 capire dalla seguente storiella.
@@ -1689,11 +1735,182 @@ risultano equivalenti
   $f$ è surgettiva allora è anche iniettiva e quindi anche bigettiva.
 \end{proof}
 
+\begin{theorem}
+  Se $A$ è finito e $B\subset A$ allora anche $B$ è finito.
+\end{theorem}
+%
+\begin{theorem}
+  Dimostriamo per induzione su $n$ che se $\#A = n$ allora ogni $B\subset A$
+  è finito.
+  Per $n=0$ si nota che $\#A = 0$ implica $A=\emptyset$ e quindi $B=\emptyset$
+  è certamente finito.
+  Supponiamo ora che sia $\#A = n+1$ e consideriamo $B\subset A$.
+  Se $B=A$ allora ovviamente $\#B=\#A=n+1$ e quindi $B$ è finito.
+  Altrimenti esiste $x\in A\setminus B$. E' facile verificare che
+  $\#(A\setminus\{x\}) = n$ ed essendo $B\subset A\setminus\{x\}$
+  applicando l'ipotesi induttiva si ottiene che $B$ è finito.
+\end{theorem}
 
-\section{i numeri interi}
+Viceversa si può dimostrare il seguente risultato.
+\begin{theorem}
+  Un insieme è finito oppure infinito.
+\end{theorem}
+%
+\begin{proof}
+Se $\# A \ge \#\NN$ allora esiste una funzione iniettiva $f\colon \NN \to A$
+e sappiamo esistere una funzione iniettiva ma non surittiva $\sigma\colon \NN \to \NN$.
+Posto $B=f(\NN)$ si ha dunque che $f\colon \NN\to B \subset A$ è bigettiva.
+Dunque possiamo definire $g \colon A \to A$ come
+\[
+g(a) =
+\begin{cases}
+    a & \text{se $a\not \in B$}\\
+    f(\sigma(f^{-1}(a))) & \text{se $a \in B$}.
+\end{cases}
+\]
+Non è difficile verificare che $g$ è iniettiva ma non suriettiva in quanto
+l'elemento $f(0)$
+non viene mai raggiunto da $g$. Dunque se $\# A \ge \#\NN$ certamente $A$
+è infinito.
 
-Dati due numeri naturali $n,m\in \NN$ vogliamo definire la loro
-\myemph{differenza} cioè al \emph{percorso} $m\mapsto n$ necessario per
+Ora mediante l'assioma della scelta si potrebbe dimostrare che se non è
+$\#A \ge \#\NN$ allora necessariamente si ha $\#A < \#\NN$
+(non lo dimostriamo perché richiederebbe diverse nuovi nozioni).
+Ma se $\#A < \#\NN$ allora esiste una funzione iniettiva $f\colon A \to \NN$.
+Poniamo $B=f(A)$ cosicché $f\colon A \to B$ è bigettiva. Per dimostrare
+che $A$ è finito basterà allora dimostrare che $B\subset \NN$ è finito.
+
+Se esiste $n\in \NN$ tale che $B\subset I_n$ allora si avrebbe $\#A\le \#I_n$
+e dunque $A$ sarebbe finito perché in corrispondenza biunivoca con un sottoinsieme
+di un insieme finito. Supponiamo allora che per ogni $n\in \NN$ si abbia
+$B\setminus I_n\neq \emptyset$. Costruiamo allora una funzione
+$f\colon \NN \to B$ tramite la seguente definizione ricorsiva:
+\[
+ \begin{cases}
+    f(0) = \min B \\
+    f(n+1) = \min (B\setminus I_{f(n)+1}).
+ \end{cases}
+\]
+La funzione è ben definita perché $B$ e $B\setminus I_m$ non sono mai vuoti
+e il buon ordinamento di $\NN$ garantisce l'esistenza del minimo.
+E' chiaro che $f(n+1) > f(n)$ e dunque (lo si potrebbe dimostrare per induzione)
+la funzione $f$ è iniettiva. Significa dunque che $\NN\le A$ contro l'ipotesi
+$\#A < \#\NN$.
+
+\end{proof}
+
+\section{Ennuple e successioni}
+
+Abbiamo denotato con $B^A$ l'insieme delle funzioni $f\colon A \to B$ e
+abbiamo denotato con $I_n = \{1, 2, \dots, n-1\} = \{k\in \NN \colon k<n\}$.
+Se $A$ è un insieme qualunque e $n\in\NN$ definiamo allora:
+\[
+   A^n = A^{I_n} = \{\vec a\colon \{1, 2, \dots, n-1\}\to A\}.
+\]
+Gli elementi $\vec a \in A^n$ vengono chiamate $n$-uple (ennuple) perché
+sono identificate dagli $n$ valori che assumono sugli $n$ numeri $0,1,\dots,n-1$.
+Normalmente si utilizza la notazione $a_k = \vec a(k)$ per denotare
+il $k$-esimo valore assunto dalla funzione $\vec a$ e si scriverà:
+\[
+  \vec a = (a_0, a_1, \dots, a_{n-1}).
+\]
+Gli elementi (di solito saranno numeri) $a_0$, $a_1$, \dots, $a_{n-1}$ vengono
+chiamati componenti della ennupla $\vec a$. I pedici $0,1, \dots, n-1$ vengono
+chiamati \emph{indici}.
+
+Noi utilizzeremo la convenzione di usare simboli in \emph{grassetto} per denotare
+le ennuple. Nella scrittura a mano (dove il grassetto è impraticabile)
+si scriverà $\underline{a}$ al posto di $\vec a$. Un'altra alternativa (meno comoda)
+è $\stackrel{\to}{a}$.
+La notazione è quella utilizzata in fisica per denotare i \emph{vettori} perché,
+in effetti, se mettiamo una base in uno spazio vettoriale di dimensione finita
+ogni vettore può essere identificato dalla ennupla delle sue componenti rispetto
+alla base.
+
+Ad esempio l'ennupla $\vec a = (3,5,3)$ è elemento di $\NN^3$.
+Sarà $\vec a = (a_0, a_1, a_2)$ con $a_0=3$, $a_1=5$, $a_2=3$.
+Formalmente $\vec a$ è definita come una funzione:
+$\vec a = \{0\mapsto 3, 1\mapsto 5, 2 \mapsto 3\}$ ma in pratica non è importante
+quale sia la definizione (altri testi potrebbero dare definizioni diverse ma equivalenti)
+ma solo quali siano le sue proprietà.
+E' anche consuetudine utilizzare gli indici a partire da $1$ invece che da $0$
+e quindi spesso si troverà scritto $\vec a = (a_1, a_2, a_3)$.
+
+Osserviamo che se $n=2$ la notazione utilizzata per le ennuple $A^2$ è la stessa
+notazione utilizzata per le coppie $A\times A$.
+L'ambiguità è giustificata dal fatto che si potrebbe in effetti identificare
+$A^2$ con $A\times A$ in quanto gli elementi di $A^2$ soddisfano la proprietà
+caratterizzante le coppie:
+\[
+  (x,y) = (x',y') \iff (x=x') \land (y=y').
+\]
+Osserviamo che formalmente $(A\times A)\times A \neq A^3$ in quanto gli elementi
+del primo insieme sono coppie del tipo $((x,y),z)$ mentre gli elementi
+del secondo insieme sono $3$-uple (triple) della forma $(x,y,z)$.
+E' chiaro quindi che pur essendo oggetti diversi possono essere messi
+in corrispondenza tra loro.
+
+In maniera analoga chiameremo \emph{successioni} a valori in $A$ gli
+elementi dell'insieme
+\[
+  A^\NN = \{\vec a\colon \NN \to A\}.
+\]
+Di nuovo useremo la notazione $a_k = \vec a(k)$ per denotare i valori
+della successione $\vec a$ e scriveremo, in maniera espressiva:
+\[
+  \vec a = (a_0, a_1, a_2, \dots, a_n, \dots).
+\]
+Gli elementi $a_0, a_1, \dots$ vengono chiamati \emph{termini} o \emph{valori}
+della successione. I pedici $0,1,\dots$ vengono chiamati \emph{indici} come per
+le ennuple.
+
+Per scrivere una successione a partire dai suoi termini
+si può usare la notazione $\vec a = (a_n)_{n\in \NN}$ o
+$\vec a = (a_n \colon n \in \NN)$
+o anche
+$\vec a = (a_n)_{n=0}^{+\infty}$. In queste notazioni la variabile $n$ è muta.
+Spesso tali notazioni si abbreviano in una
+notazione (formalmente impropria) $\vec a = (a_n)$ o anche $\vec a = a_n$.
+
+Per esempio la funzione $\vec a (n) = n^2$ definisce la successione dei quadrati:
+\[
+ \vec a = (0,\ 1,\ 4,\ 9,\ 16,\ \dots, n^2,\ \dots).
+\]
+Ma più spesso si dirà: consideriamo la successione $a_n = n^2$ indicando il
+termine generico invece dell'intera successione.
+
+Deve essere chiaro che la successione $(a_n)_{n\in \NN}$ è cosa diversa
+dall'insieme dei suoi valori $\{a_n\colon n\in \NN\}$.
+Ad esempio
+le successioni con termini
+\[
+a_k = \begin{cases}
+      1 & \text{se $k=0$}\\
+      0 & \text{se $k>0$}
+      \end{cases},
+       \qquad
+b_k = \begin{cases}
+     0 & \text{se $k=0$}\\
+     1 & \text{se $k>0$}
+     \end{cases},
+\]
+sono successioni diverse ma hanno lo stesso insieme di valori
+\[
+\{a_k\colon k\in \NN\} = \{b_k \colon k\in \NN \} = \{ 0, 1\}.
+\]
+La differenza sta nel fatto che in un insieme gli elementi non sono ordinati
+e non contano le ripetizioni,
+nelle succesioni invece (come nelle coppie e nelle ennuple) conta l'ordine e
+contano eventuali ripetizioni.
+
+Ennuple e successioni potrebbero essere entrambe racchiuse dal termine
+\emph{sequenze}.
+Una ennupla sarebbe una sequenza finita, una successione una sequenza infinita.
+
+\section{I numeri interi}
+
+Dati due numeri naturali $n,m\in \NN$ vogliamo definire
+il \emph{percorso} (o traslazione) $m\mapsto n$ necessario per
 andare da $m$ a $n$. Se $n\ge m$ significa che $n$ si può ottenere da $m$ sommando
 un certo numero naturale $k$: $n=m+k$. Il numero $k$ viene chiamato
 \myemph{differenza} tra $n$ ed $m$. Se invece $n<m$ il percorso $m\mapsto n$
@@ -1947,28 +2164,398 @@ le relazioni inverse $\le$ e $<$.
 Risulta che gli interi positivi sono gli $n\in \ZZ$ tali che $n>0$ e gli
 interi negativi sono gli $n\in \ZZ$ tali che $n<0$.
 
+Su $\ZZ$ definiamo anche la funzione \emph{valore assoluto}
+\[
+  \abs{n} =
+  \begin{cases}
+      n & \text{se $n\ge 0$}\\
+      -n & \text{se $n<0$}
+  \end{cases}.
+\]
+L'immagine di tale funzione definita su $\ZZ$ è $\NN$.
 
-\section{Appendice: Asse del tempo}
-Asse del tempo:
-\begin{itemize}
-\item[-700] Epimenide
-\item[-571] Pitagora
-\item[-490] Zenone
-\item[-384] Aristotele
-\item[-367] Euclide
-\item[1170] Fibonacci
-\item[1564] Galileo
-\item[1596] Des Cartes
-\item[1815] Boole
-\item[1845] Cantor
-\item[1848] Frege
-\item[1858] Peano
-\item[1862] Hilbert
-\item[1872] Russel
-\item[1906] Godel
-\item[1912] Turing
-\end{itemize}
+\section{Divisibilità e numeri primi}
 
+Se $n,m\in \ZZ$ e se esiste $k\in \ZZ$ tale che $m=k\cdot m$
+diremo che $n$ \myemph{divide} $m$,
+che $m$ è un \myemph{divisore} di $n$
+e scriveremo $n\mid m$.
+Ad esempio se $2\mid n$ diremo che $n$ è \myemph{pari}, altrimenti diremo che $n$
+è \myemph{dispari}.
+Visto che $n = 1\cdot n$ è chiaro che $1$ e $n$ sono sempre divisori di $n$
+(e anche $-1$ e $-n$ lo sono).
+
+Definiamo il \emph{massimo comun divisore} di due numeri $n,m$ come
+\[
+  MCD(n,m) = \max \{k\in \NN\colon (k\mid n) \land (k \mid m)\}.
+\]
+Tale massimo esiste perché l'insieme preso in considerazione
+è non vuoto (contiene sempre il numero $1$) ed è finito perchè
+
+
+Se $n=k\cdot m$ con $k\neq \pm 1$ (cioè $k\neq 1$ e $k\neq -1$)
+diremo che $n$ è \emph{riducibile}.
+In caso contrario diremo
+che $n$ è \emph{irriducibile}.
+
+\begin{theorem}[teorema fondamentale dell'aritmetica]
+  Ogni $n\in \NN$, $n\ge 2$, può essere scritto nella forma:
+  \begin{equation}\label{eq:48273}
+    n = p_1 \cdot p_2 \cdot \ldots \cdot p_N
+  \end{equation}
+  dove tutti i $p_k$ sono irriducibili e
+  $2 \le p_1 \le p_2 \le \dots \le p_N$.
+  Inoltre i $p_k$ sono univocamente determinati (la
+  decomposizione~\eqref{eq:48273} è unica).
+
+  L'espressione \eqref{eq:48273} viene chiamata \myemph{fattorizzazione}
+  di $n$ (in quanto gli operandi della moltiplicazione
+  si chiamano \emph{fattori}).
+\end{theorem}
+%
+\begin{proof}
+  Dimostriamo per induzione su $m$ il seguente
+  $P(m)$: ``ogni naturale $n<m$, $n\ge 2$
+    ammette una unica decomposizione
+    nella forma \eqref{eq:48273}''.
+
+  L'enunciato è banalmente vero per $m=3$ in quanto l'unico $n$ in questione
+  è $n=2$ e se $k,j\ge 2$ allora
+  $k\cdot j\ge 4$ e quindi $n=2$ non può essere scritto come prodotto di due
+  naturali non inferiori a $2$.
+  Significa che $2$ è irriducibile e può essere scritto in modo unico come $2=2$
+  (prodotto di un unico irriducibile).
+
+  Supponiamo ora di sapere che vale $P(m)$ e dimostriamo $P(m+1)$.
+  E' sufficiente dimostrare che $n=m$ può essere scritto in modo unico
+  nella forma~\eqref{eq:48273} (in quanto se $n<m$ il risultato è garantito
+  dall'ipotesi induttiva $P(m)$).
+  Sia $p_1 = \min\{p\ge 2\colon p|n\}$.
+  Tale minimo esiste certamente perché l'insieme non è vuoto visto che contiene
+  quantomeno il numero $n$. Inoltre $p_1$ è certamente irriducibile perché se
+  $p_1$ avesse a sua volta un divisore $p$ allora anche $p$ sarebbe un divisore
+  di $n$ e sarebbe $p<p_1$ contro l'ipotesi che $p_1$ fosse il minimo.
+  Visto che $p_1\mid n$ esiste $n'$ tale che $n=p_1\cdot n'$.
+  Visto che $p_1>1$ certamente è $n'<n=m$ e dunque applicando $P(m)$ sappiamo
+  che $n'$ ammette una unica decomposizione che possiamo scrivere nella forma:
+  \[
+    n' = p_2 \cdot p_3 \dots p_N
+  \]
+  (abbiamo utilizzato gli indici a partire da $2$ invece che da $1$ perché $p_1$
+  è già stato utilizzato). Dunque avremo che
+  \[
+    n = p_1 \cdot n' = p_1 \cdot p_2 \dots p_N
+  \]
+  come volevamo dimostrare. L'unica cosa che rimane da verificare è che
+  sia $p_1\le p_2$. Ma visto che $p_2 \mid n'$ e $n'\mid n$ scopriamo che
+  $p_2\mid n$ e quindi essendo $p_1$ il minimo divisore di $n$ deve essere
+  $p_1\le p_2$.
+\end{proof}
+
+Un numero $p$ si dice essere \myemph{primo}
+se ogni volta che $p$ divide un prodotto esso divide almeno uno dei due fattori
+cioè se per ogni $n,m\in \ZZ$ si ha:
+\[
+  p \mid m\cdot n \implies (p\mid m)\lor(p\mid n).
+\]
+
+Il prossimo teorema ci dice che sui numeri interi \emph{primo} e \emph{irriducibile} sono sinonimi (e spesso la definizione di numero primo viene espressa mediante irriducibilità) ma in contesti più generali si possono distinguere i due concetti.
+
+\begin{theorem}
+Un numero  $p\in \ZZ$ è primo se e solo se è irriducibile.
+\end{theorem}
+%
+\begin{proof}
+Supponiamo che $p$ sia primo e che si possa scrivere $p=n\cdot m$ con $n,m\in\ZZ$.
+Allora chiaramente $p\mid n\cdot m$ e quindi $p$ divide almeno uno tra $n$ e $m$.
+Senza perdita di generalità possiamo supporre $p\mid n$ da cui $p=p\cdot m$.
+Significa quindi che $m=1$ e quindi $p$ non è riducibile.
+
+Viceversa supponiamo che $p$ sia irriducibile e supponiamo che $p\mid n\cdot m$.
+Per il teorema fondamentale dell'aritmetica $n$ e $m$ hanno una unica
+fattorizzazione e il prodotto delle fattorizzazioni mi dà una fattorizzazione
+di $n\cdot m$. D'altra parte la fattorizzazione di $p$ è $p$ stesso in quanto
+$p$ è irriducibile. Dunque se $p\mid n\cdot m$ necessariamente $p$ è uno dei
+termini della fattorizzazione di $n\cdot m$ ma visto che tale fattorizzazione
+si ottiene moltiplicando tra loro le fattorizzazioni di $n$ e di $m$,
+si deduce che $p$ è in una delle due fattorizzazioni e quindi divide
+uno tra $n$ e $m$.
+\end{proof}
+
+\section{I numeri razionali}
+
+In maniera simile a come abbiamo ottenuto gli interi estendendo i naturali in
+modo da poter invertire l'operazione di addizione, vogliamo estendere gli
+inter in modo da poter invertire l'operazione di moltiplicazione.
+Dati due interi $p,q$ con $q\neq 0$,
+consideriamo la \emph{dilatazione} $q\mapsto p$ che
+lascia fisso lo $0$, manda $q$ in $p$ e manda ogni multiplo di $q$ ovvero
+ogni intero $n$ della forma $n=kq$ in $kp$.
+Chiamiamo \myemph{frazione} la coppia $q\mapsto p$ che denoteremo più espressivamente
+nella forma $\frac{p}{q}$.
+Nella frazione $\frac{p}{q}$ il numero $p$ viene chiamato \myemph{numeratore}
+e il numero $q$ \myemph{denominatore}.
+Sulle frazioni possiamo mettere una relazione di equivalenza.
+In effetti se $p'=kp$ e $q'=kq$ con $k\in \ZZ$, $k\neq 0$,
+le dilatazioni $q\mapsto p$ e $q'\mapsto p'$
+agiscono nello stesso modo sui multipli di $q'$.
+Infatti se $n=jq'=kjq$ la dilatazione $q\mapsto p$ lo manda in $kjp$ e
+la dilatazione $q'\mapsto p'$ lo manda in $jp'=kjp$.
+Se $q'=kq$ e $p'=kp$ allora equivalentemente si ha $pq'=p'q$.
+Definiamo quindi la relazione di equivalenza tra frazioni:
+\[
+  \frac{p}{q} \sim \frac{p'}{q'} \iff pq' = p'q
+\]
+e definiamo
+i numeri razionali come il quoziente
+(ricordando che $\frac p q$ è stato definito come la coppia
+$(q,p)=(q\mapsto p)$ con $q\neq 0$):
+\[
+  \QQ = ((\ZZ\setminus\{0\})\times\ZZ)/{\sim}.
+\]
+
+Data una frazione $\frac{p}{q}$ possiamo considerare $k=MCD(p,q)$.
+Essendo $k\mid p$ e $k\mid q$ si avrà $p = kp'$ e $q=kq'$ e quindi la frazione
+$\frac{p}{q}$ risulta equivalente alla frazione (ridotta) $\frac{p'}{q'}$.
+A questo punto si avrà $MCD(p',q')=1$ e quindi la frazione ottenuta
+non può essere ulteriormente ridotta. Se $MCD(p,q)=1$ si dirà che la frazione
+$\frac{p}{q}$ è ridotta ai minimi termini.
+Se $q<0$ si potrà inoltre cambiare segno sia a $p$ che a $q$ in quanto $\frac{-p}{-q}$
+è equivalente a $\frac p q$. Data una qualunque frazione
+si potrà dunque trovare una frazione equivalente, ridotta ai minimi termini,
+con denominatore positivo. Tale frazione è unica ed è quindi un naturale
+rappresentante della classe di equivalenza.
+
+Le frazioni possono essere moltiplicate e sommate tra loro con le ben note
+regole:
+\[
+  \frac{p}{q}\cdot \frac{p'}{q'} = \frac{pp'}{qq'},\qquad
+  \frac{p}{q} + \frac{p'}{q'} = \frac{pq' + p'q}{qq'}
+\]
+e possono essere ordinate con il criterio:
+\[
+ \frac{p}{q} \ge \frac{p'}{q'} \iff pq' \ge p'q.
+\]
+L'opposto di una frazione si ottiene prendendo l'opposto del numeratore
+(o, sarebbe lo stesso, del denominatore).
+
+E' facile verificare che somma, prodotto, opposto  e ordinamento non dipendono
+dalla classe di equivalenza quindi tali operazioni sono ben definite
+anche su $\QQ$. Si verifica inoltre che tali operazioni mantengono tutte le
+proprietà che avevamo già ottenuto per le stesse operazioni in $\ZZ$.
+Osserviamo che la funzione $\phi\colon \ZZ \to \QQ$ definita da
+$\phi(n) = \frac{n}{1}$ è un \emph{isomorfismo} di $\ZZ$ in
+$\ZZ' = \phi(\ZZ)\subset \QQ$ nel senso che $\phi\colon \ZZ \to \ZZ'$ è bigettiva
+e trasforma le operazioni di addizione, moltiplicazione, opposto e ordinamento
+definite in $\ZZ$ nelle corrispondenti operazioni definite in $\QQ$.
+In particolare le classi di equivalenza delle frazioni $\frac{0}{1}$
+e $\frac{1}{1}$ corrispondono
+a $0$ e $1$ di $\ZZ$
+Ad esempio:
+\[
+  \phi(n+m) = \frac{n+m}{1} = \frac{n}{1} + \frac{m}{1} = \phi(n) + \phi(m).
+\]
+Visto che di $\ZZ$ non ci interessa sapere come è stato costruito ma ci
+interessano solamente le sue proprietà, d'ora in poi potremmo rimpiazzare
+$\ZZ$ con $\ZZ'$ supponendo quindi che $\ZZ \subset \QQ$.
+All'interno di $\ZZ$
+manteniamo pure i numeri naturali $\NN$ cosicché avremo $\NN \subset \ZZ \subset \QQ$.
+
+Ogni numero razionale $r\in \QQ$, $r\neq 0$ ha ora un \emph{reciproco}
+(inverso moltiplicativo) che denotiamo con $r^{-1}$ o con $\frac{1}{r}$
+e che ha la proprietà:
+\[
+  r \cdot r^{-1} = 1.
+\]
+Questo perché se $p\neq 0$ e $q\neq 0$ il prodotto delle frazioni $\frac{p}{q}$
+e $\frac q p$ è pari a $1$.
+Questo ci permette di definire l'operazione di divisione tra numeri razionali
+quando il secondo operando non è nullo:
+\[
+  r / s = r \cdot s^{-1} \qquad \text{se $r,s \in \QQ$, $s\neq 0$}.
+\]
+Osserviamo che se $r,s\in \QQ \cap \ZZ$ sono interi, allora si ha
+\[
+  r / s = \frac{r}{1} \cdot \frac{1}{s} = \frac{r}{s}.
+\]
+Questa uguaglianza giustifica l'uso della notazione $\frac{r}{s}$ per denotare
+$r/s$ anche quando $r$ ed $s$ non sono interi. Anche in tal caso diremo
+(forse impropriamente?) che $r$ è il numeratore ed $s$ il denominatore.
+Il risultato di una divisione si chiama \myemph{rapporto}
+e può quindi essere rappresentato con le seguenti notazioni:
+\[
+  r/s = \frac{r}{s} = r \cdot s^{-1}.
+\]
+
+Le proprietà delle operazioni che abbiamo ottenuto sull'insieme numerico
+$\QQ$ sono notevoli e, in base alla seguente definizione, ci permettono
+di dire che $\QQ$ è un \emph{campo}.
+
+\begin{definition}[campo]
+  Sia $K$ un insieme su cui sono definite due operazioni $+$ e $\cdot$
+  e siano $0,1 \in K$ tali che:
+  \begin{enumerate}
+    \item sia $+$ che $\cdot$ sono operazioni associative e commutative;
+    \item vale la proprietà distributiva: $(x+y)\cdot z = x\cdot z + y\cdot z$;
+    \item $0$ e $1$ sono rispettivamente gli elementi neutri delle operazioni $+$ e $\cdot$;
+    \item ogni elemento ha l'opposto, ovvero per ogni $x\in K$ esiste $-x\in K$
+    tale che $x+(-x) = 0$; ogni elemento di $K$ tranne $0$ ha il reciproco
+    ovvero per ogni $x\in K\setminus\{0\}$ esiste $x^{-1}\in K$ tale che
+    $x\cdot x^{-1}=1$.
+  \end{enumerate}
+\end{definition}
+
+Di più, $\QQ$ è un \emph{campo ordinato} secondo la seguente definizione
+\begin{definition}[campo ordinato]
+  Sia $K$ un campo su cui è definita una relazione d'ordine totale $\le$.
+  Diremo che $K$ è un \myemph{campo ordinato} se vale le seguenti
+  proprietà di compatibilità dell'ordinamento con la struttura di campo:
+  \[
+    x \le y \iff x+z \le y+z \qquad
+    x\ge 0,\ y \ge 0 \implies x\cdot y \ge 0.
+  \]
+\end{definition}
+
+\section{I numeri reali}
+
+La costruzione degli insiemi numerici è motivata dalla necessità di misurare.
+Con i numeri naturali possiamo misurare (diremmo: contare) gli oggetti discreti:
+sassi, pecore, monete. Con i numeri interi possiamo considerare i fenomeni di
+aumento e diminuzione di queste quantità discrete (differenze tra numeri naturali).
+Con i numeri razionali possiamo suddividere l'unità di misura per misurare
+lunghezze, aree, tempi, con precisione arbitraria.
+
+Non siamo però completamente soddisfatti di come i numeri razionali possono
+misurare (ad esempio) le lunghezze. Per il teorema di Pitagora sappiamo,
+ad esempio, che la diagonale di un quadrato unitario dovrebbe essere
+un numero $x$ tale che $x^2=2$.
+Possiamo facilemente dimostrare che non esiste un numero razionale
+con tale proprietà.
+
+\begin{theorem}[Pitagora]
+  Non esiste $x\in \QQ$ tale che $x^2=2$.
+\end{theorem}
+%
+\begin{proof}
+  Supponiamo per assurdo che tale $x$ esista. Allora si potrebbe
+  scrivere $x=\frac{p}{q}$ con $p,q\in \ZZ$, $q>0$.
+  Possiamo anche supporre che la frazione sia ridotta ai minimi termini
+  e quindi che $p$ e $q$ non abbiano fattori comuni.
+  Per assurdo stiamo supponendo che sia
+  \[
+    2 = x^2= \frac{p^2}{q^2}
+  \]
+  da cui
+  \[
+   p^2 = 2 q^2.
+  \]
+  Significa che $p^2$ è pari cioè $2\mid p\cdot p$.
+  Essendo $2$ primo significa che $2 \mid p$ e quindi si può
+  scrivere $p=2p'$ con $p'\in \ZZ$. Allora abbiamo
+  \[
+    (2\cdot p)^2 = 2 q^2
+  \]
+  che è equivalente a
+  \[
+    2 p^2 = q^2.
+  \]
+  Ma allora, per lo stesso ragionamento di prima, anche $q$ è divisibile per
+  $2$. Ma questo è assurdo perché abbiamo assunto che $p$ e $q$ non avessero
+  divisori comuni.
+\end{proof}
+
+Lo stesso fenomeno (anche se molto più complicato da dimostrare) avviene quando cerchiamo di misurare il rapporto tra la lunghezza di una circonferenza e il suo diametro. Tale rapporto $\pi$ può essere approssimato con precisione arbitraria tramite numeri razionali, ma non può essere espresso mediante frazione.
+Quando il rapporto tra due misure non è razionale si dice che le due misure sono \emph{incommensurabili}.
+
+\begin{definition}[ordinamento completo]
+Sia $\le$ una relazione d'ordine su un insieme $X$.
+Una coppia $(A,B)$ di sottoinsiemi di $X$ si dice essere
+una \myemph{sezione di Dedekind} se $A$ e $B$ sono non vuoti,
+$A\le B$ (cioè per ogni $a\in A$ e $b\in B$ si ha $a\le b$).
+
+Diremo che l'ordinamento $\le$ su $X$ è \myemph{completo} (o Dedekind completo)
+e diremo che $X$ è \emph{continuo}
+se data una qualunque sezione $(A,B)$ esiste un \myemph{elemento di separazione}
+cioè esiste $x\in X$ tale che $A \le x \le B$ (significa: per ogni $a\in A$ e $b\in B$ si ha $a\le x \le b$).
+\end{definition}
+
+Intuitivamente le misure fisiche (ad esempio la misura di lunghezza di un segmento)
+dovrebbero essere un insieme continuo. La misura della circonferenza di
+un cerchio di diametro unitario può essere infatti approssimata per difetto
+dalla misura dei poligoni regolari inscritti nel cerchio e per eccesso dalla
+misura dei poligoni regolari circoscritti al cerchio. Questi perimetri,
+a loro volta, possono essere approssimati per difetto e per eccesso tramite
+numeri razionali. Dunque è possibile trovare una coppia di insiemi di misure
+$(A,B)$ dove $A$ sono tutte le approssimazioni per difetto e $B$ sono tutte le
+approssimazioni per eccesso e si può verificare che le approssimazioni
+per difetto possono essere prese arbitrariamente vicine alle approssimazioni per
+eccesso in quanto se i poligoni regolari hanno un numero di lati
+abbastanza grande, la differenza dei perimetri diventa arbitrariamente piccola.
+
+Possiamo allora verificare che $\QQ$ non è continuo.
+Infatti consideriamo i seguenti insiemi:
+\[
+  A=\{x\in \QQ\colon x^2 \le 2 \lor x\le 0\}, \qquad
+  B=\{x\in \QQ\colon x^2 \ge 2 \land x\ge 0\}.
+\]
+
+Questi insiemi non sono vuoti perché, ad esempio, $1\in A$ e $2\in B$.
+Dato un qualunque $x\in \QQ$ se $x\le 0$ si ha $x\in A$. Se $x\ge 0$ si dovrà avere
+$x^2 \ge 2$ oppure $x^2\le 2$. Nel primo caso si avrà $x\in A$ nel
+secondo caso $x\in B$. Abbiamo quindi dimostrato che $A \cup B = \QQ$.
+Verifichiamo infine che $A \le B$. Sia $a\in A$ e $b\in B$.
+Per definizione di $B$ si ha $b\ge 0$. Se $a\le 0$ risulta quindi $a \le b$.
+Se invece $a\ge 0$ dovrà essere $a^2 \le 2 \le b^2$.
+Dunque $a^2 - b^2 \le 0$ ovvero $(a-b)\cdot (a+b)\le 0$.
+Visto che $a+b\ge 0$ dovrà essere $a-b\le 0$ cioè $a\le b$ che è quanto volevamo
+dimostrare.
+
+Dunque $(A,B)$ è una sezione di Dedekind.
+Supponiamo ora (per assurdo) che esista un elemento di separazione cioè
+un $x\in \QQ$ tale che $A \le x \le B$. Visto che $0\in A \le x$
+dovrà essere $x\ge 0$. Vogliamo mostrare che $x^2 = 2$.
+Certamente sappiamo che $1\le x \le 2$ in quanto $1 \in A$ e $2\in B$.
+Se fosse $x^2 < 2$
+poniamo $\delta = 2 - x^2$. Visto che $x\ge 1$ sarà $\delta < 1$.
+Se poniamo $y=x+\delta/8$ si trova
+\[
+  y^2 = (x+\delta/8)^2 = x^2 + x \delta/4 + \delta^2/64
+  \le x^2 + \delta/2 + \delta/64 < x^2 + \delta = 2.
+\]
+Dunque $x < y$ e $y\in A$ che significa che non è $A \le x$.
+Se fosse $x^2>2$ poniamo $\delta = x^2-2$. Visto che $x\le 2$ sarà $\delta <1$.
+Se poniamo $y=x-\delta/4$ si trova
+\[
+  y^2 = (x-\delta/4)^2 = x^2 - x \delta/2 + \delta^2/16
+  > x^2 - \delta + 0  = 2.
+\]
+Dunque $x > y$ e $y\in B$ che significa che non è $x\le B$.
+Abbiamo quindi concluso che dovrebbe essere $x^2=2$ ma
+questo è impossibile se $x\in \QQ$. Dunque $\QQ$ non è continuo.
+
+
+
+% \section{Appendice: Asse del tempo}
+% Asse del tempo:
+% \begin{itemize}
+% \item[-700] Epimenide
+% \item[-571] Pitagora
+% \item[-490] Zenone
+% \item[-384] Aristotele
+% \item[-367] Euclide
+% \item[1170] Fibonacci
+% \item[1564] Galileo
+% \item[1596] Des Cartes
+% \item[1815] Boole
+% \item[1845] Cantor
+% \item[1848] Frege
+% \item[1858] Peano
+% \item[1862] Hilbert
+% \item[1872] Russel
+% \item[1906] Godel
+% \item[1912] Turing
+% \end{itemize}
+%
 \section{Contributi}
 
 Hanno segnalato errori e correzioni:
