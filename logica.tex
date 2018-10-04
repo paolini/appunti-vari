@@ -2421,66 +2421,135 @@ lunghezze, aree, tempi, con precisione arbitraria.
 
 Non siamo però completamente soddisfatti di come i numeri razionali possono
 misurare (ad esempio) le lunghezze. Per il teorema di Pitagora sappiamo,
-ad esempio, che il quadrato costruito sulla diagonale di un quadrato di lato
-unitario ha area pari a due unità quadrate. Quindi se il lato del quadrato
-ha misura $1$ la misura della diagonale dovrebbe essere rappresentata
-da un numero $x$ tale che $x^2=2$. Possiamo facilmente verificare
-che non esiste un numero razionale con tale proprietà.
+ad esempio, che la diagonale di un quadrato unitario dovrebbe essere
+un numero $x$ tale che $x^2=2$.
+Possiamo facilemente dimostrare che non esiste un numero razionale
+con tale proprietà.
 
 \begin{theorem}[Pitagora]
-  Non esiste $x\in \QQ$ tale che $x\cdot x=2$.
+  Non esiste $x\in \QQ$ tale che $x^2=2$.
 \end{theorem}
 %
 \begin{proof}
   Supponiamo per assurdo che tale $x$ esista. Allora si potrebbe
   scrivere $x=\frac{p}{q}$ con $p,q\in \ZZ$, $q>0$.
   Possiamo anche supporre che la frazione sia ridotta ai minimi termini
-  e quindi che $p$ e $q$ non abbiano fattori comuni. 
+  e quindi che $p$ e $q$ non abbiano fattori comuni.
   Per assurdo stiamo supponendo che sia
   \[
-    2 = x\cdot x= \frac{p\cdot p}{q\cdot q}
+    2 = x^2= \frac{p^2}{q^2}
   \]
   da cui
   \[
-   p\cdot p = 2 q\cdot q.
+   p^2 = 2 q^2.
   \]
-  Significa che $p\cdot p$ è pari cioè $2\mid p\cdot p$.
+  Significa che $p^2$ è pari cioè $2\mid p\cdot p$.
   Essendo $2$ primo significa che $2 \mid p$ e quindi si può
   scrivere $p=2p'$ con $p'\in \ZZ$. Allora abbiamo
   \[
-    (2\cdot p)\cdot (2\cdot p) = 2 q \cdot q
+    (2\cdot p)^2 = 2 q^2
   \]
   che è equivalente a
   \[
-    2 p\cdot p = q\cdot q.
+    2 p^2 = q^2.
   \]
   Ma allora, per lo stesso ragionamento di prima, anche $q$ è divisibile per
   $2$. Ma questo è assurdo perché abbiamo assunto che $p$ e $q$ non avessero
   divisori comuni.
 \end{proof}
 
+Lo stesso fenomeno (anche se molto più complicato da dimostrare) avviene quando cerchiamo di misurare il rapporto tra la lunghezza di una circonferenza e il suo diametro. Tale rapporto $\pi$ può essere approssimato con precisione arbitraria tramite numeri razionali, ma non può essere espresso mediante frazione.
+Quando il rapporto tra due misure non è razionale si dice che le due misure sono \emph{incommensurabili}.
 
-\section{Appendice: Asse del tempo}
-Asse del tempo:
-\begin{itemize}
-\item[-700] Epimenide
-\item[-571] Pitagora
-\item[-490] Zenone
-\item[-384] Aristotele
-\item[-367] Euclide
-\item[1170] Fibonacci
-\item[1564] Galileo
-\item[1596] Des Cartes
-\item[1815] Boole
-\item[1845] Cantor
-\item[1848] Frege
-\item[1858] Peano
-\item[1862] Hilbert
-\item[1872] Russel
-\item[1906] Godel
-\item[1912] Turing
-\end{itemize}
+\begin{definition}[ordinamento completo]
+Sia $\le$ una relazione d'ordine su un insieme $X$.
+Una coppia $(A,B)$ di sottoinsiemi di $X$ si dice essere
+una \myemph{sezione di Dedekind} se $A$ e $B$ sono non vuoti,
+$A\le B$ (cioè per ogni $a\in A$ e $b\in B$ si ha $a\le b$).
 
+Diremo che l'ordinamento $\le$ su $X$ è \myemph{completo} (o Dedekind completo)
+e diremo che $X$ è \emph{continuo}
+se data una qualunque sezione $(A,B)$ esiste un \myemph{elemento di separazione}
+cioè esiste $x\in X$ tale che $A \le x \le B$ (significa: per ogni $a\in A$ e $b\in B$ si ha $a\le x \le b$).
+\end{definition}
+
+Intuitivamente le misure fisiche (ad esempio la misura di lunghezza di un segmento)
+dovrebbero essere un insieme continuo. La misura della circonferenza di
+un cerchio di diametro unitario può essere infatti approssimata per difetto
+dalla misura dei poligoni regolari inscritti nel cerchio e per eccesso dalla
+misura dei poligoni regolari circoscritti al cerchio. Questi perimetri,
+a loro volta, possono essere approssimati per difetto e per eccesso tramite
+numeri razionali. Dunque è possibile trovare una coppia di insiemi di misure
+$(A,B)$ dove $A$ sono tutte le approssimazioni per difetto e $B$ sono tutte le
+approssimazioni per eccesso e si può verificare che le approssimazioni
+per difetto possono essere prese arbitrariamente vicine alle approssimazioni per
+eccesso in quanto se i poligoni regolari hanno un numero di lati
+abbastanza grande, la differenza dei perimetri diventa arbitrariamente piccola.
+
+Possiamo allora verificare che $\QQ$ non è continuo.
+Infatti consideriamo i seguenti insiemi:
+\[
+  A=\{x\in \QQ\colon x^2 \le 2 \lor x\le 0\}, \qquad
+  B=\{x\in \QQ\colon x^2 \ge 2 \land x\ge 0\}.
+\]
+
+Questi insiemi non sono vuoti perché, ad esempio, $1\in A$ e $2\in B$.
+Dato un qualunque $x\in \QQ$ se $x\le 0$ si ha $x\in A$. Se $x\ge 0$ si dovrà avere
+$x^2 \ge 2$ oppure $x^2\le 2$. Nel primo caso si avrà $x\in A$ nel
+secondo caso $x\in B$. Abbiamo quindi dimostrato che $A \cup B = \QQ$.
+Verifichiamo infine che $A \le B$. Sia $a\in A$ e $b\in B$.
+Per definizione di $B$ si ha $b\ge 0$. Se $a\le 0$ risulta quindi $a \le b$.
+Se invece $a\ge 0$ dovrà essere $a^2 \le 2 \le b^2$.
+Dunque $a^2 - b^2 \le 0$ ovvero $(a-b)\cdot (a+b)\le 0$.
+Visto che $a+b\ge 0$ dovrà essere $a-b\le 0$ cioè $a\le b$ che è quanto volevamo
+dimostrare.
+
+Dunque $(A,B)$ è una sezione di Dedekind.
+Supponiamo ora (per assurdo) che esista un elemento di separazione cioè
+un $x\in \QQ$ tale che $A \le x \le B$. Visto che $0\in A \le x$
+dovrà essere $x\ge 0$. Vogliamo mostrare che $x^2 = 2$.
+Certamente sappiamo che $1\le x \le 2$ in quanto $1 \in A$ e $2\in B$.
+Se fosse $x^2 < 2$
+poniamo $\delta = 2 - x^2$. Visto che $x\ge 1$ sarà $\delta < 1$.
+Se poniamo $y=x+\delta/8$ si trova
+\[
+  y^2 = (x+\delta/8)^2 = x^2 + x \delta/4 + \delta^2/64
+  \le x^2 + \delta/2 + \delta/64 < x^2 + \delta = 2.
+\]
+Dunque $x < y$ e $y\in A$ che significa che non è $A \le x$.
+Se fosse $x^2>2$ poniamo $\delta = x^2-2$. Visto che $x\le 2$ sarà $\delta <1$.
+Se poniamo $y=x-\delta/4$ si trova
+\[
+  y^2 = (x-\delta/4)^2 = x^2 - x \delta/2 + \delta^2/16
+  > x^2 - \delta + 0  = 2.
+\]
+Dunque $x > y$ e $y\in B$ che significa che non è $x\le B$.
+Abbiamo quindi concluso che dovrebbe essere $x^2=2$ ma
+questo è impossibile se $x\in \QQ$. Dunque $\QQ$ non è continuo.
+
+
+
+% \section{Appendice: Asse del tempo}
+% Asse del tempo:
+% \begin{itemize}
+% \item[-700] Epimenide
+% \item[-571] Pitagora
+% \item[-490] Zenone
+% \item[-384] Aristotele
+% \item[-367] Euclide
+% \item[1170] Fibonacci
+% \item[1564] Galileo
+% \item[1596] Des Cartes
+% \item[1815] Boole
+% \item[1845] Cantor
+% \item[1848] Frege
+% \item[1858] Peano
+% \item[1862] Hilbert
+% \item[1872] Russel
+% \item[1906] Godel
+% \item[1912] Turing
+% \end{itemize}
+%
 \section{Contributi}
 
 Hanno segnalato errori e correzioni:
