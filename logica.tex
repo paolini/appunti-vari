@@ -737,7 +737,7 @@ la \emph{logica del secondo ordine} ovvero la possibilità di poter
 formulare predicati sui sottoinsiemi di un insieme invece che solamente
 sui suoi elementi.
 
-\section{Relazioni e funzioni}
+\section{Relazioni}
 
 Definiamo la \myemph{coppia ordinata} $(a,b)$ come un oggetto (un insieme,
 visto che abbiamo deciso che tutti gli oggetti matematici sono insiemi) con
@@ -799,8 +799,40 @@ $x\stackrel R \mapsto y$,
 la relazione inversa $R'$ risulta essere lo stesso insieme di frecce ma
 con la direzione opposta $y\stackrel{R'} \mapsto x$.
 
-Le relazioni che più ci interesseranno in questo corso sono le \myemph{funzioni}.
-Le funzioni sono le relazioni \emph{univoche} cioè quelle relazioni $f$ in
+Nel seguito saremo interessati ad identificare alcune tipologie di
+relazioni.
+
+\begin{definition}[relazione di equivalenza]
+  Una relazione $\sim$ su un insieme $A$ si dice essere
+  una \myemph{relazione di equivalenza} se
+  verifica le seguenti proprietà per ogni $a,b,c\in A$:
+  \begin{enumerate}
+     \item $a \sim a$ (proprietà riflessiva);
+     \item $(a \sim b) \implies (b \sim a)$ (proprietà simmetrica);
+     \item $((a \sim b) \land (b\sim c) )\implies(a \sim c)$ (proprietà transitiva).
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}[relazione d'ordine]
+Una relazione $\le$ definita su un insieme $A$ si dice essere una
+\myemph{relazione d'ordine}
+verifica le seguenti proprietà per ogni $a,b,c\in A$:
+\begin{enumerate}
+   \item $a\le a$ (proprietà riflessiva);
+   \item $((a\le b) \land (b\le a)) \implies (a=b)$ (proprietà antisimmetrica);
+   \item $((a\le b) \land (b\le c)) \implies (a\le c)$ (proprietà transitiva).
+\end{enumerate}
+
+Se inoltre vale la seguente per ogni $a,b\in A$:
+\begin{enumerate}
+    \item[4.] $(a\le b) \lor (b\le a)$
+\end{enumerate}
+diremo che l'ordinamento è \emph{totale}.
+\end{definition}
+
+\section{Funzioni}
+
+Le \myemph{funzioni} sono le relazioni \emph{univoche} cioè quelle relazioni $f$ in
 $A\times B$ che
 mandando (nel senso delle frecce) ogni elemento $a\in A$ in uno
 ed un solo elemento
@@ -2429,7 +2461,7 @@ Non siamo però completamente soddisfatti di come i numeri razionali possono
 misurare (ad esempio) le lunghezze. Per il teorema di Pitagora sappiamo,
 ad esempio, che la diagonale di un quadrato unitario dovrebbe essere
 un numero $x$ tale che $x^2=2$.
-Possiamo facilemente dimostrare che non esiste un numero razionale
+Possiamo facilmente dimostrare che non esiste un numero razionale
 con tale proprietà.
 
 \begin{theorem}[Pitagora]
@@ -2469,14 +2501,17 @@ Quando il rapporto tra due misure non è razionale si dice che le due misure son
 
 \begin{definition}[ordinamento completo]
 Sia $\le$ una relazione d'ordine su un insieme $X$.
-Una coppia $(A,B)$ di sottoinsiemi di $X$ si dice essere
-una \myemph{sezione di Dedekind} se $A$ e $B$ sono non vuoti,
-$A\le B$ (cioè per ogni $a\in A$ e $b\in B$ si ha $a\le b$).
-
 Diremo che l'ordinamento $\le$ su $X$ è \myemph{completo} (o Dedekind completo)
 e diremo che $X$ è \emph{continuo}
-se data una qualunque sezione $(A,B)$ esiste un \myemph{elemento di separazione}
-cioè esiste $x\in X$ tale che $A \le x \le B$ (significa: per ogni $a\in A$ e $b\in B$ si ha $a\le x \le b$).
+se data una qualunque coppia $(A,B)$ di sottoinsiemi non vuoti di $X$
+se
+\[
+  A\le B \implies \exists x\in X \colon A\le x \le B.
+\]
+Ricordiamo che $A\le B$ significa che per ogni $a\in A$ e $b\in B$ si ha $a\le b$
+mentre $A\le x \le B$ significa $a\le x \le b$ per ogni $a\in A$ e ogni $b\in B$.
+Il punto $x$ verrà chiamato \myemph{elemento di separazione} dei due insiemi
+$A$ e $B$.
 \end{definition}
 
 Intuitivamente le misure fisiche (ad esempio la misura di lunghezza di un segmento)
@@ -2492,25 +2527,23 @@ per difetto possono essere prese arbitrariamente vicine alle approssimazioni per
 eccesso in quanto se i poligoni regolari hanno un numero di lati
 abbastanza grande, la differenza dei perimetri diventa arbitrariamente piccola.
 
-Possiamo allora verificare che $\QQ$ non è continuo.
+Possiamo verificare che $\QQ$ non è continuo.
 Infatti consideriamo i seguenti insiemi:
-\[
-  A=\{x\in \QQ\colon x^2 \le 2 \lor x\le 0\}, \qquad
-  B=\{x\in \QQ\colon x^2 \ge 2 \land x\ge 0\}.
-\]
+\begin{equation}\label{eq:38274}
+  \begin{aligned}
+  A&=\{x\in \QQ\colon (x^2 < 2) \lor (x\le 0)\},
+  \\
+  B&=\{x\in \QQ\colon (x^2 > 2) \land (x\ge 0)\}.
+\end{aligned}
+\end{equation}
 
 Questi insiemi non sono vuoti perché, ad esempio, $1\in A$ e $2\in B$.
-Dato un qualunque $x\in \QQ$ se $x\le 0$ si ha $x\in A$. Se $x\ge 0$ si dovrà avere
-$x^2 \ge 2$ oppure $x^2\le 2$. Nel primo caso si avrà $x\in A$ nel
-secondo caso $x\in B$. Abbiamo quindi dimostrato che $A \cup B = \QQ$.
-Verifichiamo infine che $A \le B$. Sia $a\in A$ e $b\in B$.
+Verifichiamo che $A \le B$: siano $a\in A$ e $b\in B$.
 Per definizione di $B$ si ha $b\ge 0$. Se $a\le 0$ risulta quindi $a \le b$.
 Se invece $a\ge 0$ dovrà essere $a^2 \le 2 \le b^2$.
 Dunque $a^2 - b^2 \le 0$ ovvero $(a-b)\cdot (a+b)\le 0$.
 Visto che $a+b\ge 0$ dovrà essere $a-b\le 0$ cioè $a\le b$ che è quanto volevamo
 dimostrare.
-
-Dunque $(A,B)$ è una sezione di Dedekind.
 Supponiamo ora (per assurdo) che esista un elemento di separazione cioè
 un $x\in \QQ$ tale che $A \le x \le B$. Visto che $0\in A \le x$
 dovrà essere $x\ge 0$. Vogliamo mostrare che $x^2 = 2$.
@@ -2519,20 +2552,76 @@ Se fosse $x^2 < 2$
 poniamo $\delta = 2 - x^2$. Visto che $x\ge 1$ sarà $\delta < 1$.
 Se poniamo $y=x+\delta/8$ si trova
 \[
-  y^2 = (x+\delta/8)^2 = x^2 + x \delta/4 + \delta^2/64
-  \le x^2 + \delta/2 + \delta/64 < x^2 + \delta = 2.
+  y^2 = \enclose{x+\frac \delta 8}^2 = x^2 + x \cdot \frac \delta 4 + \frac {\delta^2}{64}
+  \le x^2 + \frac \delta 2 + \frac \delta {64} < x^2 + \delta = 2.
 \]
 Dunque $x < y$ e $y\in A$ che significa che non è $A \le x$.
 Se fosse $x^2>2$ poniamo $\delta = x^2-2$. Visto che $x\le 2$ sarà $\delta <1$.
 Se poniamo $y=x-\delta/4$ si trova
 \[
-  y^2 = (x-\delta/4)^2 = x^2 - x \delta/2 + \delta^2/16
+  y^2 = \enclose{x-\frac \delta 4}^2
+  = x^2 - x \cdot \frac \delta 2 + \frac{\delta^2}{16}
   > x^2 - \delta + 0  = 2.
 \]
 Dunque $x > y$ e $y\in B$ che significa che non è $x\le B$.
 Abbiamo quindi concluso che dovrebbe essere $x^2=2$ ma
 questo è impossibile se $x\in \QQ$. Dunque $\QQ$ non è continuo.
 
+Vogliamo allora estendere $\QQ$ per ottenere un campo continuo.
+Se $A\subset \QQ$ diremo che $A$ è una \myemph{sezione di Dedekind}
+se:
+\begin{enumerate}
+  \item $A\neq \emptyset$, $A \neq \QQ$;
+  \item se $a\in A$, $x\in \QQ$ e $x\le a$ allora $x\in A$;
+  \item se $a\in A$ esiste $x\in A$ tale che $x>a$.
+\end{enumerate}
+
+Potremo allora definire
+l'insieme dei numeri reali \myemph{$\RR$} come:
+\begin{align*}
+  \RR = \{A\in \P(\QQ)\colon
+  \text{$A$ è una sezione di Dedekind} \}.
+\end{align*}
+
+Per ogni $q\in \QQ$ possiamo considerare l'insieme $A_q = \{a\in \QQ\colon a<q\}$.
+E' facile verificare che $A_q\in \RR$ (cioè che $A_q$ è una sezione di Dedekind).
+Anche l'insieme $A= \{a\in \QQ \colon (a<0) \lor a^2<2\}$ risulta essere una
+sezione di Dedekind che non corrisponde
+a nessun $A_q$ con $q\in \QQ$.
+Dunque $\RR$ contiene al suo interno un rappresentante di ogni numero razionale
+ma non solo, ha degli elementi in più.
+
+Su $\RR$ definiamo $\le_\RR$ tramite l'inclusione:
+\[
+  A,B\in \RR: A \le_\RR B \iff A \subset B.
+\]
+E' chiaro che $\le_\RR$ è una relazione d'ordine
+(perché $\subset$ lo è in generale).
+Vogliamo dimostrare che è un ordine totale cioè che
+se $A,B$ sono due sezioni di Dedekind allora o $A\subet B$
+oppure $B\subset A$. Supponiamo per assurdo che ciò non succeda:
+significa che esistono $a\in A\setminus B$ e $b\in B\setminus A$.
+Ma dovrà essere $a\le b$ oppure $b\le a$ (perché su $\QQ$ l'ordine è totale).
+Se $a\le b$ visto che $b\in B$ dovrà essere anche $a\in B$: assurdo.
+Viceversa se fosse $b\le a$ visto che $a\in A$ dovrebbe essere anche $b\in A$:
+di nuovo assurdo. Dunque $\le_\RR$ è un ordinamento totale di $\RR$.
+
+Possiamo facilmente definire l'operazione di addizione $+_\RR$ su $\RR$: \[ A
++_\RR B = A+B = \{a+b\colon a \in A, \b\in B\}. \] Bisogna innanzitutto
+verificare che $A+B$ è una sezione di Dedekind se $A$  e $B$ lo sono. Certamente
+se $A$ e $B$ sono non vuoti anche $A+B$ è non vuoto. Se $A$ e $B$ sono diversi
+da $\QQ$ sappiamo che esiste $x\in \QQ \setminus A$ ed esiste $y \in \QQ
+\setminus B$. Se chiamiamo $z$ il più grande tra $x$ e $y$  si ha $z\not \in A$
+e $z\not \in B$ perchè se $z$ fosse un elemento della sezione  allora anche $x$
+e $y$ lo sarebbero. Dunque ogni $a\in A$ e ogni $b\in B$ sono  più piccoli di
+$z$ e di conseguenza $a+b \le 2z$. Significa che $2z\not \in A+B$ e quindi $A+B$
+è non vuoto. Vogliamo ora mostrare che se $x \in A+B$ e $y\le x$  allora anche
+$y\in A+B$. Sarà $x=a+b$ con $a\in A$ e $b\in B$. Se $y\le x$ allora  $y-b \le
+x-b = a\in A$ e dunque $y-b \in A$ e $y = (y-b) + b \in A+B$. Ultima proprietà:
+dobbiamo mostrare che se $x\in A+B$ esiste $y>x$ con $y\in A+B$. Sarà $x=a+b$
+con $a\in A$ e $b\in B$. Ma allora esistono $a'\in A$ e $b'\in B$  tali che
+$a'>a$ e $b'>b$ e dunque si avrà $a+b < a'+b' \in A+B$. Questo conclude la
+dimostrazione che $A+B$ è una sezione di Dedekind.
 
 
 % \section{Appendice: Asse del tempo}
