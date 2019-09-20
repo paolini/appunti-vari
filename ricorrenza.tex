@@ -6,7 +6,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{verbatim} % for the comment environment
 \usepackage{graphicx}
-\usepackage{hyperref}
+%\usepackage[hidelinks]{hyperref}
+\AfterPreamble{\hypersetup{hidelinks=true,}}
 
 \newcommand{\RR}{{\mathbb R}}
 \newcommand{\NN}{{\mathbb N}}
@@ -48,9 +49,10 @@ shaded={rulecolor=pink!30,rulewidth=1pt,bgcolor=pink!10}
 \declaretheorem[style=mystyle,name=Esempio]{example}
 
 \title{Successioni ricorsive}
-\author{Analisi Matematica 1\\Fisica a.a. 2015-2016}
+\author{Emanuele Paolini}
+\date{Analisi Matematica I, 2015--2016}
 
-\newcommand{\online}[1]{\href{http://paolini.github.io/recurrence/?#1}{\textul{(click
+\newcommand{\online}[1]{\href{http://paolini.github.io/recurrence/?#1}{\underline{(click
       me)}}}
 
 \begin{document}
@@ -271,7 +273,7 @@ e la successione è decrescente.
   induzione, si ha $a_{n+1} \ge a_n$ per ogni $n$ e quindi la
   successione è crescente. Se invece $a_2 \le a_1$ si dimostra per
   induzione che $a_{n+1} \le a_n$ per ogni $n$ e quindi la successione
-  è decrescente.  
+  è decrescente.
 \end{proof}
 
 \begin{theorem}\label{th_decr}
@@ -541,7 +543,7 @@ Figura~\ref{fig_fibonacci}.
     a_{n+1} = \frac{5-a_n^2}{4}.
   \end{cases}
   \]
-  Determinare il limite della successione. 
+  Determinare il limite della successione.
 \end{exercise}
 
 \begin{proof}[Soluzione.]
@@ -666,17 +668,17 @@ successione ha limite: $a_n \to 1$.
   $x_1 = -2$, $x_2 = 1$. Tenendo conto anche dei segni si può
   osservare che all'interno delle due soluzioni si ha $f(x)>x$ mentre
   all'esterno si ha $f(x)<x$.
-  
+
   Osserviamo inoltre che $f(x)$ è crescente per
   $x\le 0$ e decrescente per $x\ge 0$.
-  
+
   Caso $\alpha=-7$. In questo caso consideriamo l'intervallo
   $A=(-\infty, -2)$. Visto che $f$ è crescente su questo intervallo,
   e visto che $-2$ è un punto fisso si ha:
   \[
   x < -2 \Rightarrow f(x) < f(-2) \Rightarrow f(x) < -2
   \]
-  che significa che $A$ è un intervallo invariante. 
+  che significa che $A$ è un intervallo invariante.
 
   Su questo intervallo si ha $f(x)<x$ e quindi $a_n$ è decrescente e
   di conseguenza ammette limite $a_n\to \ell$. Il limite può essere
@@ -778,7 +780,7 @@ successione ha limite: $a_n \to 1$.
 
   Stesso discorso si può fare se si avesse $a_n=-2$, in quanto si
   avrebbe $a_{n-1} = 2$, $a_{n-2} = 0$ e quindi $a_{n-3}=\pm \sqrt 2$.
-  
+
   Dunque la successione $a_n$ non ammette limite.
 \end{proof}
 
@@ -793,8 +795,8 @@ successione ha limite: $a_n \to 1$.
   Trovare il limite della successione nel caso $\alpha =
   -2015$. Determinare l'insieme dei valori di $\alpha$ per i quali la
   succession $a_n$ non è ben definita (in quanto per un qualche $n$ il
-  denominatore $2-a_n$ si annulla). 
-  Trovare il limite nel caso $\alpha=\frac{2015}{1000}$. 
+  denominatore $2-a_n$ si annulla).
+  Trovare il limite nel caso $\alpha=\frac{2015}{1000}$.
 \end{exercise}
 
 \begin{figure}
@@ -878,7 +880,7 @@ riconduce al primo studiato, e la successione tende a $1$.
     a_{n+1} = \frac{a_n^2-a_n}{2}.
   \end{cases}
   \]
-  Determinare al variare di $\alpha$ il limite della successione. 
+  Determinare al variare di $\alpha$ il limite della successione.
 \end{exercise}
 
 \begin{exercise}
@@ -889,8 +891,7 @@ riconduce al primo studiato, e la successione tende a $1$.
     a_{n+1} = 1 - a_n^2.
   \end{cases}
   \]
-  Determinare al variare di $\alpha$ il limite della successione. 
+  Determinare al variare di $\alpha$ il limite della successione.
 \end{exercise}
 
 \end{document}
-
