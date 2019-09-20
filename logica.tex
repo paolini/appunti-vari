@@ -1313,11 +1313,14 @@ $A$ ha minimo.
 \begin{proof}
 Supponiamo per assurdo che $A$ non abbia minimo e consideriamo l'insieme
 $B=\{b\in \NN\colon b \le A\}$.
-Chiaramente $0\in B$ in quanto $0\le \NN$. Se poi sapessimo che $n\in B$
-allora $n\le A$. Non può essere $n\in A$ altrimenti $n$ sarebbe il minimo di $A$.
-Dunque $n < A$ e quindi $n+1 \le A$. Abbiamo quindi mostrato che se $n\in B$ anche $n+1\in B$.
-Per il principio di induzione deduciamo che $B=\NN$ e quindi $A$ sarebbe vuoto,
-cosa che abbiamo escluso per ipotesi.
+Vogliamo dimostrare per induzione che per ogni $n\in \NN$ si ha $n\in B$.
+Chiaramente $0\in B$ in quanto $0\le \NN$.
+Dato ora qualunque $n\in B$
+si ha $n\le A$ e non può essere $n\in A$ altrimenti $n$ sarebbe il minimo di $A$.
+Dunque $n < A$ e quindi $n+1 \le A$.
+Dunque, per il principio di induzione, $B=\NN$. Ma se $A$ è non
+vuoto deve esistere almeno un $a\in A$ e certamente $a+1\not \in B$...
+abbiamo quindi un assurdo.
 \end{proof}
 
 
