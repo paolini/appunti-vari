@@ -1336,30 +1336,102 @@ abbiamo quindi un assurdo.
 
 \section{Il teorema di incompletezza di G\"odel (cenni)}
 
-Il teorema di incompletezza di G\"odel afferma che ogni
-sistema formale sufficientemente potente (diciamo che sia in grado di
-descrivere i numeri naturali come abbiamo fatto noi) è incompleto.
-La dimostrazione di tale risultato rivoluzionario richiederebbe un intero
-corso di logica, ma possiamo solo accennare al fatto che l'idea della
-dimostrazione consiste nell'associare un numero naturale ad ogni formula
-del sistema, tradurre tutte le regole di inferenza in operazioni aritmetiche
-in modo tale da poter formalizzare le dimostrazioni all'interno del sistema
-stesso. Dopodiché ``basterà'' trovare un numero $G$ tale per cui
-l'enunciato corrispondente a $G$ significa:
-"l'enunciato corrispondente al numero $G$ non può essere dimostrato",
-ovvero: "\emph{questo} enunciato non può essere dimostrato".
-E' chiara l'analogia con il paradosso di Epimenide: "questa frase è falsa".
+Il teorema di incompletezza di G\"odel afferma, in parole
+povere, che ogni sistema formale in grado di formalizzare
+l'aritmetica dei numeri naturali o è incoerente oppure
+è incompleto. Incoerente significa che è possibile dimostrare
+proposizioni false (e quindi è possibile dimostrare qualunque
+proposizione, visto che \emph{ex falso quodlibet}).
+Incompleto significa che esistono proposizioni che pur essendo
+vere non possono essere dimostrate.
+L'idea del teorema di G\"odel è quella di formalizzare
+la proposizione: "questa proposizione non può essere dimostrata."
+Risulta infatti chiaro che se tale proposizione potesse
+essere dimostrata allora sarebbe falsa (e quindi il sistema
+sarebbe incoerente) se invece tale proposizione non potesse
+essere dimostrata sarebbe vera (e quindi il sistema
+sarebbe incompleto).
 
-Si osservi che l'enunciato $G$ di G\"odel non parla direttamente di verità,
-che è un concetto esterno al sistema formale
-(dipende dal modello che noi diamo al sistema).
-Ma se vogliamo attaccare un valore di verità ad ogni enunciato dovremo decidere
-se $G$ è vero o falso. Se è vero avremmo un sistema in cui un enunciato vero
-non può essere dimostrato e quindi tale sistema sarebbe incompleto.
-Se invece $G$ è falso avremmo un sistema in cui un enunciato falso può essere
-dimostrato e quindi tale sistema sarebbe \myemph{incoerente} (ci sono degli assiomi
-falsi oppure delle regole di inferenza che permettono di dedurre enunciati falsi
-a partire da enunciati veri).
+La dimostrazione del teorema di G\"odel è molto complessa,
+cercheremo di seguito solamente di dare una vaga idea
+di come può essere attuata.
+
+Abbiamo detto che le regole di inferenza di un sistema formale
+devono essere regole meccaniche che anche un
+\emph{calcolatore} deve essere in grado di fare.
+Per formalizzare questa idea si può introdurre il concetto
+di \emph{macchina di Turing}.
+Una macchina di Turing è formata da un nastro infinito
+(che ne rappresenta la memoria) su cui la macchina può
+leggere e scrivere dei simboli (ad esempio le lettere
+utilizzate per rappresentare le formule del sistema formale).
+La macchina può essere programmata: ad ogni passo
+viene eseguita una istruzione che può leggere il simbolo
+nella posizione corrente, in base al valore del simbolo
+può scrivere un nuovo simbolo, spostarsi a destra o sinistra
+sul nastro
+e quindi passare ad una istruzione successiva.
+
+Formalmente l'intero nastro (infinito) di una macchina
+di Turing può essere memorizzato con un singolo numero naturale $n$ (nastro)
+Infatti ogni simbolo può essere codificato con una
+sequenza di cifre e l'intero nastro può essere rappresentato
+giustaponendo le cifre una di seguito all'altra.
+La posizione sul nastro è anch'essa un numero naturale $p$ (posizione).
+E ogni istruzione dell'algoritmo può essere numerata
+e quindi rappresentata da un terzo naturale $s$ (stato).
+In un sistema formale abbastanza potente
+(G\"odel dimostra che è sufficiente avere una logica
+dei predicati su un sistema formale che contiene
+i simboli per rappresentare i numeri naturali con somma
+e prodotto.
+un qualunque programma può quindi essere codificato tramite
+un predicato $P(n,p,s,n',p',s')$ che significa:
+``se la macchina ha il nastro $n$ in posizione $p$
+e si trova nello stato $s$, nel passo seguente
+il nastro diventerà $n'$ la posizione sarà $p'$ e il nuovo
+stato sarà $s'$''.
+Grazie al predicato $P$ si potrà definire una successione
+per ricorrenza $(n_k,p_k,s_k)$ che rappresenta
+lo stato della macchina dopo che è stata eseguita
+la $k$-esima istruzione.
+Un qualunque sistema formale potrebbe quindi essere definito
+da una macchina di Turing provvista di un programma
+che è in grado di verificare se una data formula
+scritta sul nastro è un teorema del sistema.
+Codificando questo programma con una formula aritmetica
+possiamo quindi trovare un predicato $T(n)$ che
+afferma: ``la formula rappresentata dal numero naturale $n$
+può essere dimostrata nel sistema formale''.
+
+A questo punto serve un metodo per scrivere una formula
+autoreferenziale. Se $P(n)$ è un qualunque predicato
+dipendente da una variabile libera "$n$", è possibile
+programmare una macchina di Turing in modo che
+prenda in input il predicato e un numero naturale $n$
+e sostituisce ogni occorrenza della variabile libera
+$n$ all'interno del predicato
+con la costante che rappresenta il numero intero $k$.
+Esiste quindi una formula aritmetica $Q(p,n,q)$
+che afferma: ``$q$ è la codifica del predicato
+che si ottiene dal predicato codificato dal numero $p$
+sostituendo ogni occorrenza della variabile "$n$" con il
+numero naturale $n$.
+
+Possiamo finalmente considerare il predicato $G(n)$
+che afferma: ``la proposizione che si ottiene sostituendo
+il numero naturale $n$ alla variabile libera "$n$" nel
+predicato codificato dal numero $n$, non è dimostrabile''.
+Ora il predicato $G$ sarà codificato da un numero naturale
+$g$. Se al posto di $n$ in $G$ sostituiamo il numero
+naturale $g$ otteniamo una proposizione $G(n=g)$ che afferma:
+``la proposizione che si ottiene sostituendo il numero
+naturale $g$ alla variabile libera "$n$" nel predicato
+codificato dal numero nel predicato codificato dal numero
+$g$, non è dimostrabile''.
+Ma chi è il predicato a cui si riferisce $G(n=g)$?
+E' proprio $G(n=g)$ stesso! Quindi $G(n=g)$ sta
+affermando: ``questa proposizione non è dimostrabile''.
 
 \section{Cardinalità}
 
