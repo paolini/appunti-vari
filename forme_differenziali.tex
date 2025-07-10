@@ -104,27 +104,27 @@ alternative, come ad esempio le seguenti:
 \[
 \omega(x)(\vec v) = \omega_x(\vec v) = \omega(x)[\vec v].
 \]
-Rimarchiamo il fatto che $\omega_x(v)$ dipende da $\vec v$ in modo
+Rimarchiamo il fatto che $\omega_x(\vec v)$ dipende da $\vec v$ in modo
 lineare, mentre in generale la dipendenza da $x$ potrebbe non essere lineare.
 
 L'esempio più importante di \emph{forma differenziale} è il
 differenziale di una funzione.
 Consideriamo una funzione differenziabile $f\colon \Omega\subset
 \RR^n\to \RR$. Dalla definizione di differenziabilità sappiamo che in
-corrispondenza di ogni punto $\vec x\in \Omega$ esiste una applicazione
-lineare $L\colon \RR^n \to \RR^n$ che soddisfa la relazione:
+corrispondenza di ogni punto $x\in \Omega$ esiste una applicazione
+lineare $L\colon \RR^n \to \RR$ che soddisfa la relazione:
 \[
-\lim_{\vec x\to \vec{x_0}} \frac{f(\vec x) - f(\vec{x_0}) - L(\vec
-  x-\vec{x_0})}{\lvert \vec x-\vec{x_0}\rvert} = 0.
+\lim_{x\to x_0} \frac{f(x) - f(x_0) - L(\vec
+  x-x_0)}{\lvert x-x_0\rvert} = 0.
 \]
 La mappa $L$ può essere denotata in diversi modi:
 \[
 L (\vec v)
-= Df(\vec{x_0}) \vec v
-= (\vecnabla f(\vec{x_0}),\vec v)
+= Df(x_0) \vec v
+= (\vecnabla f(x_0),\vec v)
 = \sum_{k=1}^n \frac{\partial f}{\partial x_k}(x_0) \, v_k
 = \frac{\partial f}{\partial v}(x_0)
-= df_{\vec{x_0}}(\vec v).
+= df_{x_0}(\vec v).
 \]
 Le diverse notazioni rappresentano modi leggermente diversi per
 rappresentare lo stesso oggetto: $Df$ è la matrice $1\times n$
@@ -137,9 +137,9 @@ notazione $df$ rappresenta invece l'applicazione lineare stessa ed è
 quindi proprio una forma differenziale lineare, $df\in \Lambda^1(\Omega)$.
 
 Consideriamo ora la funzione $x_k\colon \Omega\to \RR$ che al punto
-$\vec x\in \Omega$ associa la sua $k$-esima coordinata: $x_k$.
+$x\in \Omega$ associa la sua $k$-esima coordinata: $x_k$.
 Osserviamo che facendo il differenziale $dx_k$ della funzione $x_k$ in
-qualunque punto $\vec x \in \RR^n$,
+qualunque punto $x \in \RR^n$,
 si ottiene esattamente l'elemento $\omega_k$ della base canonica di
 $(\RR^n)^*$. Infatti:
 \[
@@ -151,14 +151,17 @@ $\vec{v}$ nella base canonica.
 Dunque ogni forma differenziale $\omega \in \Lambda^1(\Omega)$ può
 essere scritta nel seguente modo:
 \begin{equation}\label{eq:componenti_forma}
-   \omega(\vec x) = \sum_{k=1}^n a_k(\vec x) dx_k.
+   \omega(x) = \sum_{k=1}^n a_k(x) dx_k.
 \end{equation}
 In particolare il differenziale di una funzione si può scrivere così:
 \[
-  df_{\vec x} = \sum_{k=1}^n \frac{\partial f}{\partial x_k} dx_k
+  df_{x} = \sum_{k=1}^n \frac{\partial f}{\partial x_k} dx_k
 \]
-in quanto $df_{\vec x}(\vec v) = \sum_{j=1}^n \frac{\partial f}{\partial
-  x_k}(\vec x)(v_j e_j)$
+in quanto 
+$df_{x}(\vec v) 
+= \sum_{k=1}^n v_k \cdot \frac{\partial f}{\partial
+  x_k}(x)$
+e $v_k = dx_k(v)$.
 
 Il prodotto scalare canonico di $\RR^n$ ci permette di mettere in
 corrispondenza le forme differeniali lineari con i \emph{campi
@@ -167,13 +170,13 @@ Un campo vettoriale è una funzione $\xi \colon \Omega\subset \RR^n \to
 \RR^n$. Al campo $\xi$ possiamo associare una forma differenziale
 $\omega$ definita come segue:
 \[
-  \omega_{\vec x}(\vec v) = (\xi(\vec x),\vec v).
+  \omega_{x}(\vec v) = (\xi(x),\vec v).
 \]
 Se le componenti di $\omega$ sono le funzioni $a_k$ date dalla
 \eqref{eq:componenti_forma} le stesse funzioni sono le coordinate di
-$\xi_k$ nella base canonica di $\RR^n$:
+$\xi$ nella base canonica di $\RR^n$:
 \[
-  \xi_k(\vec x) = \sum_{k=1}^n a_k(\vec x) \vec{e_k}.
+  \xi(x) = \sum_{k=1}^n a_k(x) \vec{e_k}.
 \]
 
 
@@ -288,11 +291,12 @@ il calcolo degli integrali di linea, è importante avere delle
 condizioni per identificare le forme esatte.
 
 Osserviamo che se $\omega = df$ è una forma differenziale di classe
-$\mathcal C^2$:
+$\mathcal C^1$:
 \[
  \omega = \sum_{k=1}^n a_k dx_k
 \]
-si avrà $a_k = \frac{\partial f}{\partial x_k}$ dunque per il teorema
+si avrà $a_k = \frac{\partial f}{\partial x_k}$ 
+con $f$ di classe $C^2$, dunque per il teorema
 di Schwarz sulle derivate seconde miste, si avrà:
 \[
  \frac{\partial a_k}{\partial x_j} = \frac{\partial^2 f}{\partial x_j
@@ -310,7 +314,8 @@ per ogni $j=1,\dots, n$ e ogni $k=1,\dots,n$.
 
 Per l'osservazione che abbiamo fatto, sappiamo che vale il seguente.
 \begin{theorem}
-Se $\omega$ è una forma esatta, allora $\omega$ è chiusa.
+Se $\omega$ è una forma esatta, di classe $C^1$, 
+allora $\omega$ è chiusa.
 \end{theorem}
 
 \begin{example}
@@ -460,7 +465,9 @@ ci dà i domini normali rispetto all'asse delle $y$.
 
 \begin{theorem}[formule di Green]
 Sia $E\subset \RR^2$ un dominio normale rispetto all'asse delle $x$
-delimitato da due funzioni $\Phi(x)$, $\Psi(x)$ di classe $\mathcal C^1$. Allora
+delimitato da due funzioni $\Phi(x)$, $\Psi(x)$ di classe $\mathcal C^1$. 
+Allora, se $f$ è una funzione continua su $\overline E$ di classe $C^1$
+in $E$, si ha:
 \[
   -\int_E \frac{\partial f}{\partial y}(x,y)\, dx\, dy = \int_{\partial E} f(x,y)\, dx
 \]
@@ -585,8 +592,9 @@ Se $\alpha$ è una $1$-forma e $\omega$ è una $k$-forma, possiamo
 definire il loro prodotto esterno mimando lo sviluppo del
 determinante:
 \[
-  (\alpha \wedge \omega)(v_1,\dots,v_{k+1}) = \sum_{j=1}^{k+1}
-(-1)^{k+1}\alpha(v_j) \omega(v_1,\dots, v_{j-1},v_{j+1},\dots,v_{k+1})
+  (\alpha \wedge \omega)(v_1,\dots,v_{k+1}) 
+  = \sum_{j=1}^{k+1}
+(-1)^{j+1}\alpha(v_j) \omega(v_1,\dots, v_{j-1},v_{j+1},\dots,v_{k+1})
 \]
 L'operazione di prodotto esterno ci permette di costruire
 $k$-forme moltiplicando tra loro, tramite prodotto esterno, le
@@ -662,7 +670,7 @@ $\Omega$ vogliamo definire il \emph{differenziale} $d\omega$ che sarà
 una $k+1$ forma differenziale. La definizione può essere data
 imponendo che valga la relazione
 \[
-  d(f(x)\, \omega) = df(x) \wedge w
+  d(f(x)\, \omega) = df(x) \wedge \omega
 \]
 ogni volta che $\omega$ è una forma differenziale costante (cioè che
 non dipende da $x$).
@@ -783,21 +791,21 @@ Sia $\Phi\colon E\subset \RR^k\to \RR^n$ una funzione di classe
 $\mathcal C^1$. L'insieme $S=\Phi(E)$ è un sottoinsieme di $\RR^n$ che
 tramite la mappa $\Phi$ viene descritto al variare di $k$
 parametri. Diremo che $S$ è una superficie parametrizzata da
-$\Phi$. Se $\bar \Phi \colon F\subset \RR^k\to \RR^n$ è un'altra
+$\Phi$. Se $\tilde\Phi \colon F\subset \RR^k\to \RR^n$ è un'altra
 funzione tale per cui esiste una funzione bigettiva $\Psi\colon F\to
 E$ di classe $\mathcal C^1$ con $\det D\Psi \neq 0$
 che ci dà:
 \[
-  \bar \Phi(\vec v) = \Phi(\Psi(\vec v)) \qquad \forall \vec v\in F
+  \tilde\Phi(\vec v) = \Phi(\Psi(\vec v)) \qquad \forall \vec v\in F
 \]
-allora diremo che $\bar \Phi$ è una riparametrizzazione di $\Phi$ (o
-anche, impropriamente, della superficie $S=\Phi(E) = \bar\Phi(F)$) e
-che $\Psi$ è il cambio di variabile corrispondente. Usualmente $\bar
+allora diremo che $\tilde\Phi$ è una riparametrizzazione di $\Phi$ (o
+anche, impropriamente, della superficie $S=\Phi(E) = \tilde\Phi(F)$) e
+che $\Psi$ è il cambio di variabile corrispondente. Usualmente $\tilde
 \Phi$ e $\Phi$ vengono identificati come la stessa \emph{superficie} e
 si distinguono per il nome dato alle variabili:
 \[
-  \vec x = \Phi(\vec u), \qquad \vec u = \Psi(\vec v), \qquad \vec x =
-  \bar \Phi (\vec v) = \Phi(\Psi(\vec v)).
+  x = \Phi(\vec u), \qquad \vec u = \Psi(\vec v), \qquad x =
+  \tilde\Phi (\vec v) = \Phi(\Psi(\vec v)).
 \]
 Osserviamo che (se $F$ è connesso, come si supporrà sempre nel
 seguito), il segno di $\det D\Psi$ è costante\footnote{altrimenti se ci
@@ -805,7 +813,7 @@ fossero due punti con $\det D\psi$ di segno opposto,
 sulla curva che li congiunge la
 funzione $\det D\Psi$, che è continua, dovrebbe annullarsi in almeno
 un punto, per il teorema degli zeri.}. Diremo quindi che $\Phi$ e
-$\bar \Phi$ hanno la \emph{stessa orientazione} se $\det D\Psi>0$,
+$\tilde\Phi$ hanno la \emph{stessa orientazione} se $\det D\Psi>0$,
 diremo invece che hanno \emph{orientazione opposta} se $\det D\Psi<0$.
 
 Se $\omega$ è una $k$-forma differenziale definita su un aperto contenente
@@ -858,11 +866,11 @@ l'orientamento, negativo altrimenti.
 Si avrà dunque:
 \begin{align*}
 \int_\Phi \omega
-&= \pm \int_F \omega_{\bar \Phi(\vec v)} (D\Phi(\Psi(\vec
+&= \pm \int_F \omega_{\tilde\Phi(\vec v)} (D\Phi(\Psi(\vec
 v))D\Psi(\vec v))\, dv_1\dots dv_k \\
-& = \pm \int_F \omega_{\bar \Phi(\vec v)} (D\bar \Phi(\vec v))\,
+& = \pm \int_F \omega_{\tilde\Phi(\vec v)} (D\tilde\Phi(\vec v))\,
 dv_1\dots dv_k
-= \int_{\bar \Phi} \omega.
+= \pm \int_{\tilde\Phi} \omega.
 \end{align*}
 
 Abbiamo quindi mostrato che l'integrale di una forma differenziale su
@@ -927,11 +935,11 @@ $\Phi(\vec u)=\vec u$ per ogni $u\in[0,1]^k$. Allora $\omega$, essendo una
 $(k-1)$-forma in $\RR^k$, può sempre essere scritta in coordinate nel
 modo seguente:
 \[
-\omega_{\vec x} = \sum_{j=1}^k \omega_j
+\omega_{x} = \sum_{j=1}^k \omega_j
 \]
 con
 \[
-(\omega_j)_{\vec x} = f_j(\vec x)\, dx_1\wedge \dots \wedge dx_{j-1} \wedge dx_{j+1} \wedge \dots \wedge dx_k.
+(\omega_j)_{x} = f_j(x)\, dx_1\wedge \dots \wedge dx_{j-1} \wedge dx_{j+1} \wedge \dots \wedge dx_k.
 \]
 
 Nel calcolare il differenziale di $\omega_j$, le derivate del termine
@@ -939,11 +947,11 @@ $f_j$ rispetto alla variabile $u_i$ danno luogo ad un differenziale in
 cui $du_i$ compare due volte, se $i\neq j$. Dunque nel differenziale
 di $\omega_j$ rimangono solo le derivate di $f_j$ rispetto a $u_j$:
 \begin{align*}
-(d\omega_j)_{\vec x}
-&= \frac{\partial f_j}{\partial x_j}(\vec x)\,
+(d\omega_j)_{x}
+&= \frac{\partial f_j}{\partial x_j}(x)\,
 dx_j \wedge dx_1\dots \wedge dx_{j-1} \wedge dx_{j+1} \wedge \dots
 \wedge dx_k. \\
-&= (-1)^{j-1}\frac{\partial f_j}{\partial x_j}(\vec x)
+&= (-1)^{j-1}\frac{\partial f_j}{\partial x_j}(x)
 dx_1\wedge \dots \wedge dx_k.
 \end{align*}
 Si ha dunque, scegliendo $x_j$ come prima variabile di integrazione e
@@ -1129,6 +1137,7 @@ che è la formula che si voleva dimostrare.
 \begin{itemize}
 \item[26.10.2014] Prima stesura.
 \item[10.2.2015] Piccole aggiunte (chiarificazioni).
+\item[2.12.2023] Correzioni segnalate da Luca Milanese.
 \end{itemize}
 
 
