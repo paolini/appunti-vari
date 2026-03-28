@@ -122,67 +122,67 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/') # make release on tag push
     steps:
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: derivata.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: ricorrenza.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: ricorrenza.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: ricorrenza.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: ricorrenza.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: logica.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: formula_area.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: curve.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: forme_differenziali.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: sistemi_lineari.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: formula_area.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: tychonov.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: inversione.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: studioqualitativo.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: senodienne.pdf
       - name: download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: uniformecontinuita.pdf
       - name: create Release
